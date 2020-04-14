@@ -9,11 +9,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    body {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background: #f2f6e9;
+    }
+    .container{
+      width: 100%;
+      height: 100%;
+    }
     .navbar {
       margin-bottom: 50px;
       border-radius: 0;
     }
-
+    .page-footer {
+     background-color: #222;
+     color: #ccc;
+     padding: 60px 0 30px;
+    }
     .description {
      left: 50%;
      position: absolute;
@@ -53,26 +68,27 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Acceuil</a></li>
-        <li><a href="#">Catégorie</a></li>
-        <li><a href="#">Achat</a></li>
+        <li class="active"><a href="#">Accueil</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Féraille ou Trésor</a></li>
+          <li><a href="#">Bon pour le musée</a></li>
+          <li><a href="#">Acessoire VIP</a></li>
+        </ul>
+      </li>
         <li><a href="#">Vendre</a></li>
         <li><a href="#">Contact</a></li> 
         <li><a href="#">Mon Compte</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-<<<<<<< HEAD
         <li><a href="Connexion.html">Connexion</a></li>
-=======
-        <li><a href="#">Connexion</a></li>
->>>>>>> Accueil
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container">
+<div class="container" style="">
   <div class="description"> <h1>Les derniers objets ajoutés</h1></div><br><br>
     <div class="row">
       <div class="col-sm-3">
@@ -138,24 +154,27 @@
       <div class="col-lg-8 col-md-8 col-sm-12">
         <h6 class="text-uppercase font-weight-bold">Information additionnelle</h6>
         <p>
-        VAMOS A LA PLAYA
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
+        Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
         </p>
         <p>
-        PATATI PATATA
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
+        Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
         </p>
         </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-<<<<<<< HEAD
-        <h6 class="text-uppercase font-weight-bold">Administrateur de ce site ece_bay</h6><br>
-=======
-        <h6 class="text-uppercase font-weight-bold">Admin de ce site ece_bay</h6><br>
->>>>>>> Accueil
-        <p>Bautista Pineiro Aramburu </p>
-        <p>Antoine Conso</p>
-        <p>Adrien Zychowski</p>
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <p>
+        37, quai de Grenelle, 75015 Paris, France <br>
+        ece_bay@edu.ece.fr <br>
+        +33 01 76 81 10 98 <br>
+        +33 01 09 56 74 72
+        </p>
       </div>
     </div>
+  <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: ece_bay@edu.ece.fr</div>
 </footer>
+
 
 </body>
 </html>
