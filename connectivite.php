@@ -1,4 +1,9 @@
 <?php
+	session_start();
+?>
+
+
+<?php
 	$login= isset($_POST["login"])? $_POST["login"] : "";
 	$mdp= isset($_POST["mdp"])? $_POST["mdp"] : "";
 	$statut=isset($_POST["statut"])? $_POST["statut"] : "";
@@ -50,9 +55,10 @@
 				}
 
 				else{
-					echo "Bienvenue ".$login;
+					$_SESSION['login']=$login;
 
 					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.html");
+					
 				}
 		}
 	}
