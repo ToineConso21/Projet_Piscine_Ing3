@@ -1,0 +1,57 @@
+.navbar {
+      margin-bottom: 0px;
+      border-radius: 0;
+    }
+
+.description {
+     left: 50%;
+     position: absolute;
+     top: 25%;
+     transform: translate(-50%, -55%);
+     text-align: center;
+    }
+    /* Remove the jumbotron's default bottom margin */ 
+.jumbotron {
+      margin-bottom: 0;
+    }
+    /* Add a gray background color and some padding to the footer */
+footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+		
+#navigation{
+		background-color: #eeeeee;
+		height: auto;
+		width: auto; 
+		float: left;
+		padding: 5px;
+		border-right: 30px; }
+
+#section{
+			background-color: lightblue;
+			width:auto;
+			height: 100%;
+			border-left: sol;
+			float: right;
+			padding: 20px;
+		}
+
+#footer{
+			background-color: black;
+			color: white;
+			clear: both;
+			text-align: center;
+			padding: 10px;
+		}
+
+/* Thick black border */
+	hr.new4 {
+	  border: 1px solid black;
+	}
+
+	.vl {
+  border-left: 6px black;
+  height: 50px;
+}
