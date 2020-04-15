@@ -12,6 +12,25 @@
 
   <link href="util.css" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+ </script>
+
+<script language="javascript">
+	function SelectRedirect(){
+	// ON selection of section this function will work
+	//alert( document.getElementById('s1').value);
+
+	switch(document.getElementById('statut').value)
+	{
+	window.onload = function(){
+        location.href=document.getElementById("statut").value;
+    }       
+
+	}// end of switch 
+	}
+	////////////////// 
+</script>
+
 </head>
 
 
@@ -53,41 +72,14 @@
 <div class="container-fluid" align="center">
 	<h1 style="padding: 20px">Créer mon compte</h1>
 	<hr class="new4">
-			<form class="h3" action="connectivite.php" method="post">
 				<label>Vous êtes:</label>
 
-				<select id="statut">
-				  <option value="Acheteur">Acheteur</option>
-				  <option value="VendeurV">Vendeur</option>
+				<select id="statut" onChange="javascript:location.href = this.value;">
+				  <option value=""></option>
+				  <option value="Accueil.html">Acheteur</option>
+				  <option value="vendeur">Vendeur</option>
 				</select>
 
-				<hr class="new4">
-				
-				<table>
-					<tr>
-						<td> Mot de passe </td>
-						<td> <input type="password" name="mdp" required></td>
-					</tr>
-
-					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Admin"> Admin </td>
-					</tr>
-
-					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Vendeur"> Vendeur </td>
-					</tr>
-					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Acheteur"> Acheteur </td>
-					</tr>
-
-					<tr>
-						<td colspan="2" align="center"> 
-						<input type="submit" name="connexion"></td>
-					</tr>
-				</table>
-
-				
-			</form>
 		
 
 	
