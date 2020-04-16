@@ -87,6 +87,34 @@ body {
     margin: 0px;
     background: #f2f6e9;
 }
+
+
+/* Thick black border */
+hr.new4 {
+	  border: 1px solid black;
+	}
+
+.vl {
+  border-left: 6px black;
+  height: 50px;
+}
+
+img.round{
+	border-radius: 50%;
+}
+.img{
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    display:block;
+    height:200px;
+}
+.bg{
+    background-image:url("bgdImg/fond1.jpg");
+}
+.new-bg{
+    background-image:url();
+}
 /*--------------------------------------------------------------------------------------------------*/
 
 
@@ -115,10 +143,10 @@ body {
 			padding: 10px;
 		}
 
-/* Thick black border */
-	hr.new4 {
-	  border: 1px solid black;
-	}
+#align{
+	align-content: center;
+}
+
 
 	.vl {
   border-left: 6px black;
@@ -138,4 +166,8 @@ input {
 }
 input:focus {
   background-color: lightblue;
+
+#profile{
+	padding: 100px;
+	
 }
