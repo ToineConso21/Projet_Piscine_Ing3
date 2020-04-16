@@ -124,3 +124,18 @@ body {
   border-left: 6px black;
   height: 50px;
 }
+/*-------------------------------------------SignUp_select.html--------------------------------------------*/
+
+.hidden {
+	display: none;
+}
+
+input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+}
+input:focus {
+  background-color: lightblue;
+}
