@@ -32,9 +32,10 @@
 <body style="align-content: center;">
 
 <div class="jumbotron">
-  <div class="container text-center">
-    <h1>Ebay ECE</h1>      
-    <p>Mission, Vission & Values</p>
+  <div class="container-fluid">
+    <div class="container text-center">
+      <h1>EBAY ECE</h1>
+    </div>
   </div>
 </div>
 
@@ -46,19 +47,41 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Deals</a></li>
-        <li><a href="#">Stores</a></li>
+        <li class="active"><a href="#">Accueil</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Féraille ou Trésor</a></li>
+          <li><a href="#">Bon pour le musée</a></li>
+          <li><a href="#">Acessoire VIP</a></li>
+        </ul>
+      </li>
+        <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="#">Vendre</a></li>
+          <?php
+        } 
+        ?>
+        
         <li><a href="#">Contact</a></li>
+        <?php if (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Vendeur") {
+          ?>
+          <li><a href="compteVendeur.php">Mon Compte</a></li>
+          <?php
+        }
+        elseif (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur") {
+           ?>
+           <li><a href="compteVendeur.php">Mon Compte</a></li>
+           <?php
+         } 
+        ?>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+        <li><a href="Connexion.html">Connexion</a></li>
       </ul>
     </div>
   </div>
