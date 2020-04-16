@@ -126,10 +126,6 @@ body {
 }
 /*-------------------------------------------SignUp_select.html--------------------------------------------*/
 
-.hidden {
-	display: none;
-}
-
 input {
   padding: 12px 20px;
   margin: 8px 0;

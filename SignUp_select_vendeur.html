@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ebay ECE - Sign in Acheteur</title>
+	<title>Ebay ECE - Sign in Vendeur</title>
 
 
 	<meta charset="utf-8">
@@ -60,38 +60,35 @@
 
 <div class="container-fluid" align="center">
 
-  <label>Si vous voulez créer un compte Vendeur, appuyez ici :</label>
+  <label>Si vous voulez créer un compte Acheteur, appuyez ici :</label>
 
-  <button onclick="document.location = 'SignUp_select_vendeur.html'">Vendeur</button>
+  <button onclick="document.location = 'SignUp_select.html'">Acheteur</button>
+	<hr class="new4">
+
+	<h1 style="padding: 20px">Créer mon compte Vendeur</h1>
 
   <hr class="new4">
-  <h1 style="padding: 20px">Créer mon compte Acheteur</h1>
-    <hr class="new4">
-
   <h3 style="padding: 20px">Rentrez les informations demandées</h1>
 
-<!------------------------------------------------------------------------------------------------------->
-<!-------------------------------------------ACHETEUR------------------------------------------------------>
-<!-------------------------------------------------------------------------------------------------------->
 
-<div class="boite" name="boite" id="boite">
-  <form action="creation_Compte.php" method="post">
+<!-------------------------------------------------------------------------------------------------->
+<!-------------------------------------------VENDEUR------------------------------------------------>
+<!-------------------------------------------------------------------------------------------------->
+
+<div name="boite2" id="boite2">
+  <form action="creation_Compte_vendeur.php" method="post">
     <table>
       <!------------------------------------------- Identifiants--------------------------------------->
       <tr>
         <td><u>Vos Identifiants :</u><br></td>
       </tr>
       <tr>
+        <td>Nom d'utilisateur :</td>
+        <td><input type="text" required name="nom_utilisateur"></td>
+      </tr>
+      <tr>
         <td>Email:</td>
-        <td><input type="email" name="email_acheteur" required></td>
-      </tr>
-      <tr>
-        <td>Votre mot de passe:</td>
-        <td><input type="password" name="mdp" required></td>
-      </tr>
-      <tr>
-        <td>Confirmer votre mot de passe:</td>
-        <td><input type="password" name="mdp2" required></td>
+        <td><input type="email_vendeur" required name="email_vendeur"></td>
       </tr>
       <!------------------------------------------- Informations personnelles------------------------------------->
 
@@ -99,77 +96,32 @@
       </tr>
       <tr>
         <td>Nom:</td>
-        <td><input type="text" name="nom_acheteur" required></td>
+        <td><input type="text" required name="nom_vendeur"></td>
       </tr>
       <tr>
         <td>Prénom:</td>
-        <td><input type="text" name="prenom_acheteur" required></td>
+        <td><input type="text" required name="prenom_vendeur"></td>
       </tr>
       <tr>
-        <td>Adresse1:</td>
-        <td><textarea name="adresse1" rows="3" cols="50" required></textarea></td>
+        <td>Ajoutez une photo de profil:</td>
+        <td><input type="file" name="photo_pdp"></td>
       </tr>
       <tr>
-        <td>Adresse2:</td>
-        <td><textarea name="adresse2" rows="3" cols="50"></textarea></td>
-      </tr>
-      <tr>
-        <td>Code Postale:</td>
-        <td><input type="number" name="code_postale" required></td>
-      </tr>
-      <tr>
-        <td>Ville:</td>
-        <td><input type="text" name="ville" required></td>
-      </tr>
-      <tr>
-        <td>Pays:</td>
-        <td><input type="text" name="pays"></td>
-      </tr>
-      <tr>
-        <td>Téléphone:</td>
-        <td><input type="number" name="tel"></td>
-      </tr>
-      <!------------------------------------------- Informations banquaires--------------------------------------->
-      <tr>
-        <td><u>Vos Informations banquaires :</u><br></td>
-      </tr>
-      <tr>
-        <td>Type de carte de paiement:</td>
-        <td> 
-                  <select name="type_de_carte">
-                        <option value="MasterCard">MasterCard</option>
-                        <option value="VISA">VISA</option>
-                        <option value="American Express">American Express</option>
-                  </select>
-            </td>
-      </tr>
-      <tr>
-        <td>Numéro de la carte:</td>
-        <td><input type="number" name="num_carte"></td>
-      </tr>
-      <tr>
-        <td>Nom du titulaire:</td>
-        <td><input type="text" name="nom_titulaire"></td>
-      </tr>
-      <tr>
-        <td>Date d'expiration:</td> 
-        <td><input type="Date" name="date_exp"></td>
-      </tr>
-      <tr>
-        <td>Code de sécurité :</td>
-        <td><input type="number" name="num_secu"></td>
+        <td>Ajoutez une photo de couverture:</td>
+        <td><input type="file" name="photo_couverture"></td>
       </tr>
       <tr>
         <td><input type="checkbox" name="condition_accepte" required>Vous acceptez les conditions de la clause</td>
       </tr>
       <tr>
         <td colspan="2" align="center">
-        <input type="Submit"  name="creation_acheteur">
+        <input type="Submit"  name="creation_vendeur">
         </td>
       </tr>
-      </table>
+    </table>
   </form>
 </div>
+ 
 
 <br>
 
