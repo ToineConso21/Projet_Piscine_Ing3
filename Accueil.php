@@ -76,7 +76,7 @@
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+        <li><a href="SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
         <li><a href="Connexion.html">Connexion</a></li>
       </ul>
     </div>
