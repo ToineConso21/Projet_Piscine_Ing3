@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 14 avr. 2020 à 15:58
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Hôte : 127.0.0.1:3308
+-- Généré le :  ven. 17 avr. 2020 à 15:43
+-- Version du serveur :  5.7.28
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,50 +62,32 @@ CREATE TABLE IF NOT EXISTS `acheteurs` (
   `Date_exp` date NOT NULL,
   `Code` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `acheteurs`
 --
 
 INSERT INTO `acheteurs` (`ID`, `Nom`, `Prenom`, `Email`, `Mdp`, `Adresse1`, `Adresse2`, `Ville`, `Code_Postal`, `Pays`, `Tel`, `Type_paiement`, `Num_carte`, `Nom_carte`, `Date_exp`, `Code`) VALUES
-(1, 'Marcel', 'Pagnol', 'pagno@ece.fr', 'marcel', 'nanaj 75', '', 'Pananame', 75001, 'France', 46546488, 'MASTERCARD', 454546446, 'G ELEM ME', '2020-05-14', 9598);
+(1, 'Marcel', 'Pagnol', 'pagno@ece.fr', 'marcel', 'nanaj 75', '', 'Pananame', 75001, 'France', 46546488, 'MASTERCARD', 454546446, 'G ELEM ME', '2020-05-14', 9598),
+(2, 'fz', 'zfe', 'zffez@zfefz', 'fe', 'zefze', 'zeffez', 'VFDSC', 543, 'VFD', 6534, 'VISA', 354, 'GF', '2028-07-22', 5334);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `admin`
+-- Structure de la table `bid`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `ID` int(11) NOT NULL,
-  `Pseudo` varchar(255) NOT NULL,
-  `Mdp` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `admin`
---
-
-INSERT INTO `admin` (`ID`, `Pseudo`, `Mdp`) VALUES
-(1, 'EbayCE', 'admin');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `carte_credit`
---
-
-DROP TABLE IF EXISTS `carte_credit`;
-CREATE TABLE IF NOT EXISTS `carte_credit` (
-  `Num_carte` int(255) NOT NULL,
-  `ID_acheteur` int(11) NOT NULL,
-  `Solde` int(255) NOT NULL,
-  KEY `Num_carte` (`Num_carte`),
-  KEY `ID_acheteur` (`ID_acheteur`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `bid`;
+CREATE TABLE IF NOT EXISTS `bid` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_encheres` int(11) NOT NULL,
+  `ID_acheteurs` int(11) NOT NULL,
+  `Horaire` date NOT NULL,
+  `Montant` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID_encheres` (`ID_encheres`,`ID_acheteurs`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -120,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `encheres` (
   `Date_debut` date NOT NULL,
   `Date_fin` date NOT NULL,
   `ID_items` int(11) NOT NULL,
+  `Statut` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_items` (`ID_items`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -128,8 +111,8 @@ CREATE TABLE IF NOT EXISTS `encheres` (
 -- Déchargement des données de la table `encheres`
 --
 
-INSERT INTO `encheres` (`ID`, `Prix`, `Date_debut`, `Date_fin`, `ID_items`) VALUES
-(1, 35, '2020-04-01', '2020-04-08', 1);
+INSERT INTO `encheres` (`ID`, `Prix`, `Date_debut`, `Date_fin`, `ID_items`, `Statut`) VALUES
+(1, 35, '2020-04-01', '2020-04-08', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -141,10 +124,12 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE IF NOT EXISTS `items` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(255) NOT NULL,
-  `Photo` int(255) NOT NULL,
+  `Photo` varchar(255) NOT NULL,
   `Description` text NOT NULL,
   `Video` varchar(255) NOT NULL,
   `Categorie` varchar(255) NOT NULL,
+  `TypeVente1` varchar(255) NOT NULL,
+  `TypeVente2` varchar(255) NOT NULL,
   `ID_Vendeur` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_Vendeur` (`ID_Vendeur`)
@@ -154,24 +139,27 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Déchargement des données de la table `items`
 --
 
-INSERT INTO `items` (`ID`, `Nom`, `Photo`, `Description`, `Video`, `Categorie`, `ID_Vendeur`) VALUES
-(1, 'Montre', 0, 'Belle montre ancienne', '', 'Encheres', 5),
-(2, 'Meuble', 0, 'Meuble moderne', '', 'Achat immediat', 6);
+INSERT INTO `items` (`ID`, `Nom`, `Photo`, `Description`, `Video`, `Categorie`, `TypeVente1`, `TypeVente2`, `ID_Vendeur`) VALUES
+(1, 'Montre', '', 'Belle montre ancienne', '', 'VIP', 'Enchere', 'achatDirect', 5),
+(2, 'Meuble', '', 'Meuble moderne', '', 'ferraille', 'nego', 'achatDirect', 6);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `negociations`
+-- Structure de la table `offres`
 --
 
-DROP TABLE IF EXISTS `negociations`;
-CREATE TABLE IF NOT EXISTS `negociations` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Prix` int(11) NOT NULL,
+DROP TABLE IF EXISTS `offres`;
+CREATE TABLE IF NOT EXISTS `offres` (
+  `ID` int(11) NOT NULL,
+  `ID_acheteurs` int(11) NOT NULL,
+  `ID_vendeur` int(11) NOT NULL,
   `ID_items` int(11) NOT NULL,
+  `Round` int(11) NOT NULL,
+  `Montant` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_items` (`ID_items`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `ID_acheteurs` (`ID_acheteurs`,`ID_vendeur`,`ID_items`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -210,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
   `Pdp` varchar(255) NOT NULL,
   `Image` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `vendeur`
@@ -218,7 +206,9 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
 
 INSERT INTO `vendeur` (`ID`, `Nom`, `Prenom`, `Pseudo`, `Email`, `Pdp`, `Image`) VALUES
 (5, 'La', 'Fayette', 'pa', 'pa@ece.fr', '0', '0'),
-(6, 'Robert', 'Spierre', 'robo', 'robo@ece.fr', '0', '0');
+(6, 'Robert', 'Spierre', 'robo', 'robo@ece.fr', '0', '0'),
+(7, 'Yann', 'Houras', 'Yannis', 'yanou@gmail.com', 'C:wamp64wwwProjet_Piscine_Ing3image_commerce.png', 'C:wamp64wwwProjet_Piscine_Ing3image_fond_accueil.png'),
+(8, 'Yann', 'Houras', 'Yannis', 'yanou@gmail.com', 'C:wamp64wwwProjet_Piscine_Ing3image_commerce.png', 'C:wamp64wwwProjet_Piscine_Ing3image_fond_accueil.png');
 
 --
 -- Contraintes pour les tables déchargées
@@ -229,12 +219,6 @@ INSERT INTO `vendeur` (`ID`, `Nom`, `Prenom`, `Pseudo`, `Email`, `Pdp`, `Image`)
 --
 ALTER TABLE `achat_direct`
   ADD CONSTRAINT `achat_direct_ibfk_1` FOREIGN KEY (`ID_Items`) REFERENCES `items` (`ID`);
-
---
--- Contraintes pour la table `carte_credit`
---
-ALTER TABLE `carte_credit`
-  ADD CONSTRAINT `carte_credit_ibfk_1` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteurs` (`ID`);
 
 --
 -- Contraintes pour la table `encheres`
@@ -249,16 +233,9 @@ ALTER TABLE `items`
   ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`ID_Vendeur`) REFERENCES `vendeur` (`ID`);
 
 --
--- Contraintes pour la table `negociations`
---
-ALTER TABLE `negociations`
-  ADD CONSTRAINT `negociations_ibfk_1` FOREIGN KEY (`ID_items`) REFERENCES `items` (`ID`);
-
---
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`ID_items`) REFERENCES `items` (`ID`),
   ADD CONSTRAINT `panier_ibfk_3` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteurs` (`ID`);
 COMMIT;
 
