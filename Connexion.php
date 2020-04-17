@@ -91,7 +91,7 @@
 
             <?php if (isset($_SESSION['user_id'])) {
               ?>
-              <li><a href="logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+              <li><a href="http://localhost/Projet_Piscine_Ing3/sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
             <?php
 
               }

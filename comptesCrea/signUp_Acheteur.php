@@ -38,7 +38,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.php">Accueil</a></li>
+        <li class="active"><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Féraille ou Trésor</a></li>
@@ -46,14 +46,43 @@
           <li><a href="#">Acessoire VIP</a></li>
         </ul>
       </li>
-        <li><a href="#">Vendre</a></li>
-        <li><a href="#">Contact</a></li> 
-        <li><a href="#">Mon Compte</a></li>
+        <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="#">Vendre</a></li>
+          <?php
+        } 
+        ?>
+        
+        <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
+          <?php
+        } 
+        ?>
+
+        <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteAcheteur.php">Mon Compte</a></li>
+          <?php
+        } 
+        ?>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-        <li><a href="Connexion.html">Connexion</a></li>
-      </ul>
+        <?php if(!isset($_SESSION['user_type'])) {
+          ?>
+            <li><a href="comptesCrea/SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+            <li><a href="http://localhost/Projet_Piscine_Ing3/Connexion.php">Connexion</a></li>
+          <?php
+        } 
+        ?>
+        <?php if (isset($_SESSION['user_id'])) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/sessMgmt/logout.php" title="Logout"><img src="http://localhost/Projet_Piscine_Ing3/imgs/logout.png" style="size: relative;"></a></li>
+        <?php
+          }
+        ?>
+        </ul>
     </div>
   </div>
 </nav>
@@ -62,7 +91,7 @@
 
   <label>Si vous voulez créer un compte Vendeur, appuyez ici :</label>
 
-  <button onclick="document.location = 'SignUp_select_vendeur.html'">Vendeur</button>
+  <button onclick="document.location = 'signUp_Vendeur.php'">Vendeur</button>
 
   <hr class="new4">
   <h1 style="padding: 20px">Créer mon compte Acheteur</h1>
@@ -75,7 +104,7 @@
 <!-------------------------------------------------------------------------------------------------------->
 
 <div class="boite" name="boite" id="boite">
-  <form action="creation_Compte.php" method="post">
+  <form action="creation_Acheteur.php" method="post">
     <table>
       <!------------------------------------------- Identifiants--------------------------------------->
       <tr>
