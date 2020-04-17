@@ -2,5 +2,5 @@
 	session_start();
 	session_unset();
 	session_destroy();
-	header('Location: Accueil.php');
+	header('Location: http://localhost/Projet_Piscine_Ing3/Accueil.php');
 ?>
