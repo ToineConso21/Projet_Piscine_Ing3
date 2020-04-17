@@ -29,17 +29,9 @@
 
 		if ($_POST['creation_vendeur']) 
 		{
-			$sql = " INSERT INTO vendeur (Nom, Prenom, Pseudo, Email, Pdp, Image) VALUES('$nom_vendeur', '$prenom_vendeur', '$nom_utilisateur','$email_vendeur  '$photo_pdp', '$photo_couverture')
+			$sql = " INSERT INTO vendeur (Nom, Prenom, Pseudo, Email, Pdp, Image) VALUES('$nom_vendeur', '$prenom_vendeur', '$nom_utilisateur','$email_vendeur',  '$photo_pdp', '$photo_couverture')
 			 ";		
 			$result=mysqli_query($conn,$sql);
-				if (mysqli_num_rows($result)==0) {
-					echo "Identifiant ou Mot de passe incorrects";
-				}
-
-				else{
-					echo "Votre Compte à bien été créé !" . "<br>" ;
-
-				}
 
 		}
 		

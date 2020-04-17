@@ -76,7 +76,7 @@
 <!-------------------------------------------------------------------------------------------------->
 
 <div name="boite2" id="boite2">
-  <form action="creation_Compte_vendeur.php" method="post">
+  <form action="creation_Compte_vendeur.php"  enctype="multipart/form-data" method="post">
     <table>
       <!------------------------------------------- Identifiants--------------------------------------->
       <tr>
@@ -109,9 +109,6 @@
       <tr>
         <td>Ajoutez une photo de couverture:</td>
         <td><input type="file" name="photo_couverture"></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="condition_accepte" required>Vous acceptez les conditions de la clause</td>
       </tr>
       <tr>
         <td colspan="2" align="center">
