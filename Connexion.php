@@ -53,6 +53,7 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+
         <ul class="nav navbar-nav">
           <li class="active"><a href="Accueil.php">Accueil</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
@@ -83,7 +84,7 @@
             <?php if(!isset($_SESSION['user_type'])) {
               ?>
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-                <li><a href="Connexion.html">Connexion</a></li>
+                <li><a href="#">Connexion</a></li>
               <?php
             } 
             ?>
@@ -97,6 +98,7 @@
             ?>
 
           </ul>
+
     </div>
   </div>
 </nav>
