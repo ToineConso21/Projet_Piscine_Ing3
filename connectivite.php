@@ -9,6 +9,7 @@
 	$mdp= isset($_POST["mdp"])? $_POST["mdp"] : "";
 	$statut=isset($_POST["statut"])? $_POST["statut"] : "";
 
+
 	$conn=mysqli_connect('localhost','root','','ece_ebay');
 
 	if (!$conn) {
