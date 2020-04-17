@@ -63,14 +63,14 @@
         
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
           ?>
-          <li><a href="compteVendeur.php">Mon Compte</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
           <?php
         } 
         ?>
 
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
           ?>
-          <li><a href="compteAcheteur.php">Mon Compte</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteAcheteur.php">Mon Compte</a></li>
           <?php
         } 
         ?>
@@ -79,14 +79,18 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if(!isset($_SESSION['user_type'])) {
           ?>
+<<<<<<< HEAD
             <li><a href="comptesCrea/SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+=======
+            <li><a href="comptesCrea/signUp_Acheteur.php"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+>>>>>>> 43ffd55a06ae2794c8aff96826126314b7546bf3
             <li><a href="Connexion.php">Connexion</a></li>
           <?php
         } 
         ?>
         <?php if (isset($_SESSION['user_id'])) {
           ?>
-          <li><a href="logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+          <li><a href="sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
         <?php
           }
         ?>

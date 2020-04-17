@@ -16,7 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="util.css">
+<link rel="stylesheet" type="text/css" href="http://localhost/Projet_Piscine_Ing3/util.css">
 
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -45,7 +45,7 @@
 	<div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1><a href="Accueil.php">EBAY ECE</a></h1>
+      <h1><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">EBAY ECE</a></h1>
     </div>
   </div>
 </div>
@@ -61,7 +61,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.php">Accueil</a></li>
+        <li class="active"><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Féraille ou Trésor</a></li>
@@ -87,7 +87,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-        <li><a href="Connexion.html">Connexion</a></li>
+        <li><a href="http://localhost/Projet_Piscine_Ing3/Connexion.php">Connexion</a></li>
       </ul>
     </div>
   </div>
