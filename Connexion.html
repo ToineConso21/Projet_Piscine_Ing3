@@ -68,28 +68,14 @@
         <?php 
         if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
-          <?php
-        } 
-        ?>
-        
-        <li><a href="#">Contact</a></li>
         <?php if (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Vendeur") {
           ?>
-          <li><a href="compteVendeur.php">Mon Compte</a></li>
           <?php
         }
         elseif (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur") {
            ?>
-           <li><a href="compteVendeur.php">Mon Compte</a></li>
-           <?php
-         } 
-        ?>
+
         
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-        <li><a href="Connexion.html">Connexion</a></li>
       </ul>
     </div>
   </div>
