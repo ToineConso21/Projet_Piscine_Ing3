@@ -20,7 +20,7 @@
 
 	$database = "ece_ebay";
 
-	$conn=mysqli_connect('localhost','root','','ece_ebay');
+	$conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
 	if (!$conn) {
 		echo "Erreur de connexion a la bdd";

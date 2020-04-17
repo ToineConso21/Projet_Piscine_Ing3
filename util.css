@@ -15,7 +15,7 @@
     }
     /* Remove the jumbotron's default bottom margin */ 
 .jumbotron {
-    background-image: url('image_fond_accueil.png');
+    background-image: url('imgs/image_fond_accueil.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -23,7 +23,7 @@
     }
 
 .header {
-	background-image: url('image_commerce.png');
+	background-image: url('imgs/image_commerce.png');
 	background-size: cover;
 	background-position: center;
 	position: relative;

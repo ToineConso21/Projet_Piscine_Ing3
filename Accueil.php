@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if(!isset($_SESSION['user_type'])) {
           ?>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+            <li><a href="comptesCrea/SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
             <li><a href="Connexion.php">Connexion</a></li>
           <?php
         } 
