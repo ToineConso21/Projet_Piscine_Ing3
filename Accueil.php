@@ -46,7 +46,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Accueil</a></li>
+        <li class="active"><a href="Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Féraille ou Trésor</a></li>
@@ -61,24 +61,36 @@
         } 
         ?>
         
-        <li><a href="#">Contact</a></li>
-        <?php if (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Vendeur") {
+        <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
           ?>
           <li><a href="compteVendeur.php">Mon Compte</a></li>
           <?php
-        }
-        elseif (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur") {
-           ?>
-           <li><a href="compteVendeur.php">Mon Compte</a></li>
-           <?php
-         } 
+        } 
+        ?>
+
+        <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
+          ?>
+          <li><a href="compteAcheteur.php">Mon Compte</a></li>
+          <?php
+        } 
         ?>
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-        <li><a href="Connexion.html">Connexion</a></li>
-      </ul>
+        <?php if(!isset($_SESSION['user_type'])) {
+          ?>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+            <li><a href="Connexion.php">Connexion</a></li>
+          <?php
+        } 
+        ?>
+        <?php if (isset($_SESSION['user_id'])) {
+          ?>
+          <li><a href="logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+        <?php
+          }
+        ?>
+        </ul>
     </div>
   </div>
 </nav>

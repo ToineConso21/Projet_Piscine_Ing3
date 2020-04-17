@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,37 +53,56 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.html">Accueil</a></li>
-  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Féraille ou Trésor</a></li>
-          <li><a href="#">Bon pour le musée</a></li>
-          <li><a href="#">Acessoire VIP</a></li>
+
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="Accueil.php">Accueil</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Féraille ou Trésor</a></li>
+            <li><a href="#">Bon pour le musée</a></li>
+            <li><a href="#">Acessoire VIP</a></li>
+          </ul>
+          </li>
+
+          <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+            ?>
+            <li><a href="#">Vendre</a></li>
+            <?php
+          } 
+          ?>
+          
+          <?php if (isset($_SESSION['user_login'])) {
+            ?>
+            <li><a href="#">Mon Compte</a></li>
+            <?php
+          } 
+          ?>
+          
         </ul>
-      </li>
-        <li><a href="#">Vendre</a></li>
-        <li><a href="#">Contact</a></li> 
-        <li><a href="#">Mon Compte</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
 
-        <?php 
-        if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
-          ?>
-        <?php if (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Vendeur") {
-          ?>
-          <?php
-        }
-        elseif (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur") {
-           ?>
+        <ul class="nav navbar-nav navbar-right">
+            <?php if(!isset($_SESSION['user_type'])) {
+              ?>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+                <li><a href="#">Connexion</a></li>
+              <?php
+            } 
+            ?>
 
-        
-      </ul>
+            <?php if (isset($_SESSION['user_id'])) {
+              ?>
+              <li><a href="logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+            <?php
+
+              }
+            ?>
+
+          </ul>
+
     </div>
   </div>
 </nav>
+
 
 <div class="container" align="center">
 	<h1 style="padding: 20px">Connexion</h1>

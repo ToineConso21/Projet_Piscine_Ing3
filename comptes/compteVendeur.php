@@ -1,5 +1,6 @@
 <?php
 	session_start();
+  require_once('session.php');
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +106,7 @@
 
 	<div id="align">
 		<h2 align="center"><u>Mes informations:</u></h2>
-		<table align="center" class="h3">
+		<table align="center" class="h3" cellpadding="25">
 			<tr >
 				<td style="padding-bottom: 20px">Nom:</td>
 				<td style="padding-bottom: 20px"><?php echo $_SESSION['user_nom']; ?> </td>
