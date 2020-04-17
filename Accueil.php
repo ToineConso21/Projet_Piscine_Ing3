@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +30,7 @@
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <a href="#">LOGO</a>
+      <h1>EBAY ECE</h1>
     </div>
   </div>
 </div>
@@ -50,9 +54,26 @@
           <li><a href="#">Acessoire VIP</a></li>
         </ul>
       </li>
-        <li><a href="#">Vendre</a></li>
-        <li><a href="#">Contact</a></li> 
-        <li><a href="#">Mon Compte</a></li>
+        <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="#">Vendre</a></li>
+          <?php
+        } 
+        ?>
+        
+        <li><a href="#">Contact</a></li>
+        <?php if (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Vendeur") {
+          ?>
+          <li><a href="compteVendeur.php">Mon Compte</a></li>
+          <?php
+        }
+        elseif (isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur") {
+           ?>
+           <li><a href="compteVendeur.php">Mon Compte</a></li>
+           <?php
+         } 
+        ?>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="SignUp_select.html"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
