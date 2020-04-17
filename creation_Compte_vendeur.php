@@ -32,7 +32,13 @@
 			$sql = " INSERT INTO vendeur (Nom, Prenom, Pseudo, Email, Pdp, Image) VALUES('$nom_vendeur', '$prenom_vendeur', '$nom_utilisateur','$email_vendeur',  '$photo_pdp', '$photo_couverture')
 			 ";		
 			$result=mysqli_query($conn,$sql);
+			if ($result==1) {
+				echo "Votre compte Vendeur a bien été crée !";
+				header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
 
+			}
+			else
+				echo "CHEH";
 
 		}
 
