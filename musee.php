@@ -1,3 +1,6 @@
+
+
+
 <?php
   session_start();
 ?>
@@ -95,82 +98,89 @@
   </div>
 </nav>
 
-<header class="page-header header container-fluid">
-<div class="overlay"></div>
-  <div class="description">
-  <h1>Bienvenue sur ECE_Bay!</h1>
-      <p>
-       Nous avons fait le maximum pour vous faciliter la prise en main de ce site et rendre votre expérience plus plaisante !
-      </p>
-      </div>
-
-  <div class="description2">
-      <p>
-        Vous avez en bas de cette page les items ajouté récemment par nos vendeurs. Allez jeter un coup d'oeil et passez un agreable moment sur notre site !  
-      </p>
-    </div>
-</header>
-
-
-
-<div class="container features" >
-    <div class="row">
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-          </div>
-        </div>
 <br>
-<div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-          </div>
-        </div>
 <br>
+
+
+       <div><h4><strong>Bon pour le Musée</strong></h4> <br>
+        <hr class="new4">  
+        
+       </div> 
+       
+        
+      
+<?php
+ 
+ $achat_im = isset($_POST['achat_im'])? $_POST['achat_im'] : "";
+  $offre = isset($_POST['offre'])? $_POST['offre'] : "";
+    $enchere = isset($_POST['enchere'])? $_POST['enchere'] : "";
+
+    $categorie = isset($_POST['categorie'])? $_POST['categorie'] : "";
+    
+
+  
+  
+  $conn=mysqli_connect('localhost','root','','ece_ebay');
+
+  if (!$conn) {
+    echo "Erreur de connexion a la bdd";
+  }
+  else {
+
+          $sql="SELECT * FROM items WHERE Categorie = 'musee'";
+          $result=mysqli_query($conn,$sql);
+
+
+          if (mysqli_num_rows($result)==0) {
+            echo "Aucun objet dans cette catégorie";
+            }
+
+          else{
+
+
+                
+            echo "<div class='row'>";
+            while ($data= mysqli_fetch_assoc($result)) {
+              echo "<div class='col-sm-3'>";
+              echo "<div class='container'>";
+              $image = $data['Photo'];
+              echo "<img src='$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
+              echo"</div>";
+              echo"</div>";
+               echo"<div class='col-sm-3'>";
+              echo"<div class='panel panel-danger'>";
+                echo"<div class='panel-heading'> ". $data['Nom'] ."</div>";
+                echo"<div class='panel-body'>". $data['Description']."<br>";
+                echo "Type de vente de cet objet :<br>";
+                 echo $data['TypeVente1']."&nbsp &nbsp <br>";
+                  echo $data['TypeVente2']."&nbsp &nbsp <br>";
+                echo "&nbsp &nbsp <input type='button' value='Ajouter' href='#' width='20px' height='50px'>";
+                echo "&nbsp &nbsp <input type='button' value='voir' href='#' width='20px' height='50px'><br>";
+                echo"</div>" ;
+                $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
+                $result2 = mysqli_query($conn,$sql2);
+                $data2 = mysqli_fetch_assoc($result2);
+                echo"<div class='panel-footer'> ";
+                echo "Proposé par : ".$data2['Pseudo']." </div>";
+              echo"</div>";
+            echo"</div>";
+             
+             
+              
+            }
+            echo "</div>";
+             
+
+            }
+
+        }
+
+?>	
+	
+    
+
+
+
 <footer class="page-footer">
   <div class="container">
     <div class="row">
@@ -197,7 +207,6 @@
     </div>
   <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: ece_bay@edu.ece.fr</div>
 </footer>
-
 
 </body>
 </html>
