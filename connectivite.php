@@ -86,6 +86,7 @@
 						$_SESSION['user_nomCard']=$data['Nom_carte'];
 						$_SESSION['user_dateExp']=$data['date_exp'];
 						$_SESSION['user_cardCode']=$data['Code'];
+						$_SESSION['user_Solde']=$data['Solde'];
 						}
 
 					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
