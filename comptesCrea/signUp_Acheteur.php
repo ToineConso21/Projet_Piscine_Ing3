@@ -181,7 +181,7 @@
         <td><input type="text" name="nom_titulaire"></td>
       </tr>
       <tr>
-        <td>Date d'expiration  aaaa-mm-jj :</td> 
+        <td>Date d'expiration :</td> 
         <td><input type="date" name="date_exp" value="2030-07-01"></td>
       </tr>
       <tr>

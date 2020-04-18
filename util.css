@@ -188,3 +188,11 @@ table, td {
 	padding: 15px;
 }
 
+.on {
+    display: block;
+}
+ 
+.off {
+    display: none;
+}
+

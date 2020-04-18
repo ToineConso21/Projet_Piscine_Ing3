@@ -32,10 +32,12 @@
 
     }
     else
+    {
       document.getElementById(leId).style.visibility = "hidden";
       document.getElementById(leId2).style.visibility = "hidden";
-
+    }
    }
+
  </script>
 
 </head>
@@ -108,22 +110,15 @@
   <h1><center>Vendre</center></h1><br>
 
     <div style="float: left; width: 10%;">
-      <?php
+      
 
-        $database = "ece_ebay";
+  <img class="round" style="max-width:150px;padding: 15px" src="<?php echo $_SESSION['user_pdp']; ?>" alt="photo">
 
-        $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
-
-        $sql= "SELECT * FROM vendeur";
-              $result=mysqli_query($conn,$sql);
-                $data = mysqli_fetch_assoc($result);
-                $image = $data['Image'];
-                            echo "<img class='left'  src='$image' height='120' width='100'>"
-
-      ?>
+      
     </div>
       <div><hr class="new4" style="width: 100%;"></div>
 
+<!-------------------------------------------DEBUT DE CREATION------------------------------------------->
 
 
 <div>
@@ -131,9 +126,8 @@
   <h3><strong>Ajoutez un objet :</strong></h3>
 
   <div name="boite2" id="boite2">
-    <form action="creation_Vendeur.php" method="post">
+    <form action="http://localhost/Projet_Piscine_Ing3/creationObjet.php" method="post">
       <table>
-        <!------------------------------------------- Identifiants--------------------------------------->
         <tr>
           <td>Nom de votre objet :</td>
           <td><input type="text" required name="nom_objet"></td>
@@ -143,7 +137,7 @@
           <td><textarea name="description_objet" rows="3" cols="50" required></textarea></td>
         <tr>
           <td>Ajoutez une photo de l'objet:</td>
-          <td><input type="file" name="photo_objet"></td>
+          <td><input type="file" name="photo_objet" required></td>
         </tr>
         <tr>
           <td>Ajoutez une vidéo de l'objet:</td>
@@ -152,12 +146,12 @@
         <tr>
           <td>A quelle catégorie appartient-il ?</td>
           <td>
-            <input type="radio" name="categorie" value="Ferraille ou Trésor">
-            <label for="Ferraille ou Trésor">Ferraille ou Trésor</label><br>
-            <input type="radio" name="categorie" value="Bon pour le Musée">
-            <label for="Bon pour le Musée">Bon pour le Musée</label><br>
-            <input type="radio" name="categorie" value="Accessoire VIP">
-            <label for="Accessoire VIP">Accessoire VIP</label>
+            <input type="radio" name="categorie_objet" value="Ferraille ou Trésor" required>
+            <label>Ferraille ou Trésor</label><br>
+            <input type="radio" name="categorie_objet" value="Bon pour le Musée" required>
+            <label>Bon pour le Musée</label><br>
+            <input type="radio" name="categorie_objet" value="Accessoire VIP" required>
+            <label>Accessoire VIP</label>
           </td>
         </tr>
       </table>
@@ -168,48 +162,48 @@
   
   <div style="display: flex; flex-direction: column;  margin: 10px; width: 350px;" >
         
-          <label><input type="checkbox" id="checkbox" onclick="faireApparaitre_disparaitre(this,'1')"> Enchères</label>
+          <label><input type="checkbox" id="checkbox1"  onclick="faireApparaitre_disparaitre(this,'1')"> Enchères</label>
           <table  id="1" style="visibility: hidden;">
             <tr>
               <td>Entrez votre prix minimum en euros:</td>
-              <td><input type="number" name="prix_min"></td>
+              <td><input type="number" id="11" name="prix_min"></td>
             </tr>
             <tr>
               <td>Début des enchères :</td>
-              <td><input type="date" name="debut_enchère" value="2020-07-01"></td>
+              <td><input type="date" name="debut_enchère" id="12" value="2020-07-01"></td>
             </tr>
             <tr>
               <td>Fin des enchères:</td>
-              <td><input type="date" name="fin_enchere" value="2020-07-01"></td>
+              <td><input type="date" name="fin_enchere" id="13" value="2020-07-01"></td>
             </tr>
           </table>
   </div>
 
   <div style="display: flex;flex-direction: column;   margin: 10px; width: 350px;">
 
-         <label><input type="checkbox" id="checkbox" onclick="faireApparaitre_disparaitre(this,'2')">Offres</label>
-          <table id="2" style="visibility: hidden;">
+         <label><input type="checkbox" id="checkbox2"   onclick="faireApparaitre_disparaitre(this,'2')">Offres</label>
+          <table id="2" style="visibility: hidden;" >
             <tr>
               <td>Prix initial:</td>
-              <td><input type="number" name="prix_init"></td>
+              <td><input type="number" name="prix_init"  ></td>
             </tr>
           </table>
   </div>
 
   <div style="display: flex;flex-direction: column; margin: 10px; width: 350px;">
 
-          <label><input type="checkbox" id="checkbox" onclick="faireApparaitre_disparaitre(this,'3')">Vente Direct</label>
+          <label><input type="checkbox" id="checkbox3"   onclick="faireApparaitre_disparaitre(this,'3')">Vente Direct</label>
           <table id="3" style="visibility: hidden;">
             <tr>
               <td>Prix fixe:</td>
-              <td><input type="number" name="prix_fixe"></td>
+              <td><input type="number" name="prix_fixe" ></td>
             </tr>
           </table>
   </div>
 
 </div>
 
-          <input type="submit" value="Valider">
+          <input  type="submit" name="Valider">
 
     </form>
   </div>

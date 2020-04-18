@@ -83,7 +83,7 @@
         <ul class="nav navbar-nav navbar-right">
             <?php if(!isset($_SESSION['user_type'])) {
               ?>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+                <li><a href="comptesCrea/signUp_Acheteur.php"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
                 <li><a href="#">Connexion</a></li>
               <?php
             } 
@@ -121,14 +121,14 @@
 					</tr>
 
 					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Admin"> Admin </td>
+						<td style="padding: 5px"><input type="radio" name="statut" value="Admin" required> Admin </td>
 					</tr>
 
 					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Vendeur"> Vendeur </td>
+						<td style="padding: 5px"><input type="radio" name="statut" value="Vendeur" required> Vendeur </td>
 					</tr>
 					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Acheteur"> Acheteur </td>
+						<td style="padding: 5px"><input type="radio" name="statut" value="Acheteur" required> Acheteur </td>
 					</tr>
 
 					<tr>
