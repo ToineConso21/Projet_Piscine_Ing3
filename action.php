@@ -3,16 +3,16 @@
 ?>
 
 <?php 
-	/*TOUTES LES METHODES DE PAIEMENT SONT REGROUPEES ICI, 
-	EN FAISANT UN ACHAT DIRECT, IL EST RENVOYE AUX PAGES CONFRIRMANT LA LIVRAISON
-	ET MODE DE PAIEMENT AVANT D'ENVOYER LA REQUETE SQL POUR EFFECTUER L'ACHAT*/
+	/*TOUTES LES METHODES DE PAIEMENT VENANT D'UN COMPTE CLIENT SONT REGROUPEES ICI, */
+
+	
 
 	$id_item= 2;
 	//isset($_POST["item"])? $_POST["item"] : "";
 
 	//IL SELECTIONNE UNE METHODE D'ACHAT
 	$type_achat= "Enchere"; 
-	//isset($_POST["achat"])? $_POST["achat"] : "";
+	//isset($_POST["methodeAchat"])? $_POST["methodeAchat"] : "";
 
 	$conn=mysqli_connect('localhost','root','','ece_ebay');
 
@@ -21,6 +21,9 @@
 	}
 	else{
 		if ($type_achat=="Achat_im") {
+			/*EN FAISANT UN ACHAT DIRECT, IL EST RENVOYE AUX PAGES CONFRIRMANT LA LIVRAISON
+	ET MODE DE PAIEMENT AVANT D'ENVOYER LA REQUETE SQL POUR EFFECTUER L'ACHAT*/
+
 			//ON VERIFIE SI L'ARTICLE EXISTE
 			$sql="SELECT Prix FROM achat_direct WHERE ID_Items='".$id_item."' ";
 
@@ -82,6 +85,7 @@
 
 		}
 
+/////////////////////////////////////////////////////////////////////
 
 		elseif ($type_achat=="Enchere") {
 			//ON SET LE MONTANT ET L'ID DE L'ENCHERE VIA UN POST
@@ -176,14 +180,19 @@
 			 }
 			
 		}
+/////////////////////////////////////////////////////////////////////
 
+		//L'UTILISATEUR FAIT UNE OFFRE
 		elseif ($type_achat=="Offre") {
+			$montant=35;
+
 			$sql="SELECT * FROM offres WHERE ID_items='".$id_item."' ";
 			$result=mysqli_query($conn,$sql);
 
 			if (mysqli_num_rows($result)==0) {
 				echo "Une erreur est servenu... Veuillez réessayer plus tard";
 			}
+			//VERIFIE SI LE NOMBRE DE NEGOCIATIONS EST DE 5 OU PLUS
 			else{
 				while ($data=mysqli_fetch_assoc($result)) {
 					$nbRounds=$data['Round'];
@@ -191,10 +200,10 @@
 				if ($nbRounds==5) {
 					echo "Vous ne pouvez plus faire d'offres sur cet item";
 				}
+				//ENVOI DE L'OFFRE
 				else{
-					$sql="INSERT INTO offres (ID_acheteurs,ID_vendeurs,ID_items,Round,Montant) 
-					VALUES ('$_SESSION['user_id']', '$id_vendeur', '$id_item', '"$nbRounds".+1','$montant') ";
-					$result=mysqli_query($conn,$sql);
+					$sql="UPDATE offres SET ID_acheteurs='".$_SESSION['user_id']."' AND Round='".$nbRounds."'+1 Montant='".$montant."' AND Changement=true WHERE ID_items='".$id_item."' ";
+					$result=mysqli_query($conn,$sql) ;
 
 					if (!$result) {
 						echo "L'offre n'a pas été enregistrée";

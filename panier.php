@@ -12,7 +12,7 @@
 		echo "Erreur de connexion à la bdd";
 	}
 	else{
-		$sql="SELECT * FROM panier WHERE ID_acheteur='".$_SESSION['user_id']."''";
+		$sql="SELECT * FROM panier WHERE ID_acheteur='".$_SESSION['user_id']."' ";
 		$result=mysqli_query($conn,$sql);
 
 		if (mysqli_num_rows($result)==0) {
@@ -28,5 +28,7 @@
 				echo "Item ajouté à votre panier !";
 			}
 		}
+		else
+			echo "Cet item est déjà dans votre panier";
 	}
 ?>
