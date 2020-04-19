@@ -2,6 +2,8 @@
 	session_start();
 ?>
 
+<!------CODE POUR METTRE UN ITEM DANS LE PANIER-------------------->
+
 <?php
 	
 	$id_item= isset($_POST["item"])? $_POST["item"] : "";
@@ -30,5 +32,32 @@
 		}
 		else
 			echo "Cet item est déjà dans votre panier";
+	}
+?>
+
+<?php 
+	$conn=mysqli_connect('localhost','root','','ece_ebay');
+
+	if (!$conn) {
+		echo "Erreur de connexion à la bdd";
+	}
+	else{
+		$sql="SELECT bid.ID_encheres id_enchere, encheres.Statut statut_enchere 
+				FROM bid
+				LEFT JOIN encheres
+				ON bid.ID_encheres = encheres.ID
+				WHERE bid.ID_acheteurs='".$_SESSION['user_id']."' ";
+
+		$result=mysqli_query($conn,$sql);
+
+		if (mysqli_num_rows($result)!=0) {
+			while ($data=mysqli_fetch_assoc($result)) {
+				$statut=$data['statut_enchere'];
+			}
+			if ($statut==1) {
+				//ENCHERE REMPORTEE, IL DOIT POUVOIR PAYER -> IMPLIQUE AFFICHAGE DANS PANIER
+			}
+
+		}
 	}
 ?>

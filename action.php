@@ -6,12 +6,12 @@
 	/*TOUTES LES METHODES DE PAIEMENT VENANT D'UN COMPTE CLIENT SONT REGROUPEES ICI, */
 
 	
-
+	//L'ITEM ACHETE EST RECUPERE
 	$id_item= 2;
 	//isset($_POST["item"])? $_POST["item"] : "";
 
-	//IL SELECTIONNE UNE METHODE D'ACHAT
-	$type_achat= "Enchere"; 
+	//LA METHODE D'ACHAT EST RECUPEREE
+	$type_achat= isset($_POST["methodeAchat"])? $_POST["methodeAchat"] : ""; 
 	//isset($_POST["methodeAchat"])? $_POST["methodeAchat"] : "";
 
 	$conn=mysqli_connect('localhost','root','','ece_ebay');
@@ -20,12 +20,12 @@
 		echo "Erreur de connexion à la base de données";
 	}
 	else{
-		if ($type_achat=="Achat_im") {
+		/* if ($type_achat=="Achat_im") {
 			/*EN FAISANT UN ACHAT DIRECT, IL EST RENVOYE AUX PAGES CONFRIRMANT LA LIVRAISON
-	ET MODE DE PAIEMENT AVANT D'ENVOYER LA REQUETE SQL POUR EFFECTUER L'ACHAT*/
+			ET MODE DE PAIEMENT AVANT D'ENVOYER LA REQUETE SQL POUR EFFECTUER L'ACHAT*/
 
 			//ON VERIFIE SI L'ARTICLE EXISTE
-			$sql="SELECT Prix FROM achat_direct WHERE ID_Items='".$id_item."' ";
+			/*$sql="SELECT Prix FROM achat_direct WHERE ID_Items='".$id_item."' ";
 
 			$result=mysqli_query($conn,$sql);
 
@@ -47,12 +47,9 @@
 				else{
 					if ($prix_item>$_SESSION['user_Solde']) {
 						echo "Paiement refusé";
-						echo $prix_item;
-						echo $_SESSION['user_Solde'];
+						header('Location: paiementRefuse.php');
 					}
 					else{
-						echo "Paiement accepté";
-						//AFFICHER LE TRALALA
 						$_SESSION['user_Solde'] = $_SESSION['user_Solde'] - $prix_item;
 
 						$sql="UPDATE acheteurs SET Solde='".$_SESSION['user_Solde']."' WHERE ID='".$_SESSION['user_id']."'  ";
@@ -61,27 +58,33 @@
 						if (!$result) {
 							echo "Solde non débité";
 						}
-						echo "Solde débité";
-						//ON EFFACE L'ARTICLE ?
-						$sql="DELETE FROM achat_direct WHERE ID_Items='".$id_item."' ";
-						$result=mysqli_query($conn,$sql);
-
-						if (!$result) {
-							echo "erreur dans la suppression de l'article dans la table achat_direct <br>";
-						}
 						else{
-							$sql="DELETE FROM items WHERE ID='".$id_item."' ";
+							echo "Solde débité";
+							//ON EFFACE L'ARTICLE ?
+							$sql="DELETE FROM achat_direct WHERE ID_Items='".$id_item."' ";
 							$result=mysqli_query($conn,$sql);
 
-						if (!$result) {
-							echo "erreur dans la suppression de l'article dans la table items <br>";
+							if (!$result) {
+								echo "erreur dans la suppression de l'article dans la table achat_direct <br>";
+							}
+							else{
+								$sql="DELETE FROM items WHERE ID='".$id_item."' ";
+								$result=mysqli_query($conn,$sql);
+
+							if (!$result) {
+								echo "erreur dans la suppression de l'article dans la table items <br>";
+							}
+							else
+								echo "article successfully enlevé";
+								header('Location: paiementAccepte.php');
+							}
+							
 						}
-						}
-						echo "article successfully enlevé";
+
 					}
 				}
 
-			}
+			}*/
 
 		}
 
@@ -94,7 +97,6 @@
 			 $id_enchere=1;
 			 //isset($_POST["item"])? $_POST["item"] : "";
 
-			 //RECUPERER HEURE AUTOMATIQUEMENT CI-DESSOUS
 
 			 //ON VERIFIE AVANT TOUT SI L'ACHETEUR N'A PAS DEJA FAIT UNE ENCHERE SUR LE MÊME ITEM, SINON... IL TRICHE
 			 $sql="SELECT ID_encheres, ID_acheteurs FROM bid WHERE ID_acheteurs='".$_SESSION['user_id']."' AND ID_encheres='".$id_enchere."' ";
@@ -201,8 +203,19 @@
 					echo "Vous ne pouvez plus faire d'offres sur cet item";
 				}
 				//ENVOI DE L'OFFRE
-				else{
+				elseif($nbRounds==0){
 					$sql="UPDATE offres SET ID_acheteurs='".$_SESSION['user_id']."' AND Round='".$nbRounds."'+1 Montant='".$montant."' AND Changement=true WHERE ID_items='".$id_item."' ";
+					$result=mysqli_query($conn,$sql) ;
+
+					if (!$result) {
+						echo "L'offre n'a pas été enregistrée";
+					}
+					else{
+						echo "Votre offre a été envoyée !";
+					}
+				}
+				elseif ($nbRounds>=1) {
+					$sql="UPDATE offres SET Round='".$nbRounds."'+1 Montant='".$montant."' AND Changement=true WHERE ID_items='".$id_item."'  ",
 					$result=mysqli_query($conn,$sql) ;
 
 					if (!$result) {
