@@ -126,7 +126,6 @@
     } 
     else 
     {
-      echo "on a trouve";
       for ($i=0; $i < $compteur ; $i++) { 
 
 
@@ -138,9 +137,9 @@
             echo "<td>" . "<img src='imgs/$image' height='274' width='260'>" . "</td>";
             echo "</div>";
             echo "<div style='width: 400px; margin-right: 10px; background-color: #A47D74'>";
-            echo "<h1>" . $data['Nom'] . "</h1><br>";
-            echo "<h5>" . $data['Description'] . "</h5><br>";
-            echo "<br><br><br><h4>Cet item appartient à cette catégorie : " . $data['Categorie'] . "</h4>";
+            echo "<h1 style='padding: 30px;'>" . $data['Nom'] . "</h1><br>";
+            echo "<h5 align='center'>" . $data['Description'] . "</h5><br>";
+            echo "<br><br><br><h4 style='padding:30px;'>Cet item appartient à cette catégorie : " . $data['Categorie'] . "</h4>";
             echo "</div>";
 
             echo "<div style=' width: 450px; background-color: grey; margin-right: 10px;'>";
@@ -189,11 +188,17 @@
             {
                 $sql2 = "SELECT * FROM offres WHERE ID_items =   '".$tmp."' ";
 
+
                 $result2 = mysqli_query($conn, $sql2);
 
                 $data2 = mysqli_fetch_assoc($result2);
-
-                $round=$data2['Round'];
+                if (!$result2 || !$data2) {
+                  $round='0';
+                }
+                else
+                {
+                  $round=$data2['Round'];
+                }
                   
                 $decompte = '5'-$round;
 
