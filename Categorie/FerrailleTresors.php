@@ -46,7 +46,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.php">Accueil</a></li>
+        <li class="active"><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
@@ -109,17 +109,14 @@
 <?php
  
  
-
-  
-  
-  $conn=mysqli_connect('localhost','root','','ece_ebay');
+  $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
   if (!$conn) {
     echo "Erreur de connexion a la bdd";
   }
   else {
 
-          $sql="SELECT * FROM items WHERE Categorie = 'ferraille'"; // On Selectionne les objets de la categorie Ferraille 
+          $sql="SELECT * FROM items WHERE Categorie = 'ferraille ou Tresor'"; // On Selectionne les objets de la categorie Ferraille 
           $result=mysqli_query($conn,$sql);
 
 

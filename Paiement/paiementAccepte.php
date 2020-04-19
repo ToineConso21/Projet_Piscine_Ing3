@@ -1,32 +1,30 @@
 <?php
-  session_start();
+	session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Ebay ECE</title>
-  <meta charset="utf-8">
+	<title>ECE Ebay | Commande</title>
+</head>
+	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" 
   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../util.css">
+	<link rel="stylesheet" type="text/css" href="util.css">
 
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script type="text/javascript">
- $(document).ready(function(){
- $('.header').height($(window).height());
- });
+	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	 $(document).ready(function(){
+	 $('.header').height($(window).height());
+	 });
 </script>
-
-
-</head>
 <body>
-<!---------------------------------------------Affichage Du Header------------------------------------------------------------->
+
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
@@ -46,17 +44,17 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">Accueil</a></li>
+        <li class="active"><a href="Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
-          <li><a href="musee.php">Bon pour le musée</a></li>
-          <li><a href="VIP.php">Acessoire VIP</a></li>
+          <li><a href="Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
+          <li><a href="Categorie/musee.php">Bon pour le musée</a></li>
+          <li><a href="Categorie/VIP.php">Acessoire VIP</a></li>
         </ul>
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/mesObjets.php">Vendre</a></li>
           <?php
         } 
         ?>
@@ -95,85 +93,13 @@
   </div>
 </nav>
 
-<br>
-<br>
-
-
-       <div><h4><strong>Accessoires VIP</strong></h4> <br>
-        <hr class="new4">  
-        
-       </div> 
-    <div style>   
-        
-      
-<?php
- 
-  
-  $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
-
-  if (!$conn) {
-    echo "Erreur de connexion a la bdd";
-  }
-  else {
-
-          $sql="SELECT * FROM items WHERE Categorie = 'VIP'"; // On Selectionne les objets de la categorie VIP 
-          $result=mysqli_query($conn,$sql);
-
-
-          if (mysqli_num_rows($result)==0) {
-            echo "Aucun objet dans cette catégorie";
-            }
-
-          else{
-
-
-                 
-           echo "<div class='row'>";
-            while ($data= mysqli_fetch_assoc($result)) {   // Affichage de tous les objets sélectionnés 
-              echo "<div class='col-sm-3'>";
-              echo "<div class='container'>";  
-              $image = $data['Photo'];
-              echo "<img src='../imgs/$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
-              echo"</div>";
-              echo"</div>";
-               echo"<div class='col-sm-3'>";
-              echo"<div class='panel panel-danger'>";
-                echo"<div class='panel-heading'> ". $data['Nom'] ."</div>";
-                echo"<div class='panel-body'>". $data['Description']."<br>";
-                echo "Type de vente de cet objet :<br>";
-                 echo $data['TypeVente1']."&nbsp &nbsp <br>";
-                  echo $data['TypeVente2']."&nbsp &nbsp <br>";
-                  echo"<form action='Fiche_item.php' method='post'>";//lien vers la page fiche item
-                  echo "ID de l'objet : ".$data['ID']."<br>";
-                echo "<button type='submit' name='bouton' value='".$data['ID']."' >Voir</button>";
-                echo "</form>";
-                echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>";
-                echo"</div>" ;
-                $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
-                $result2 = mysqli_query($conn,$sql2);
-                 if (mysqli_num_rows($result2)==0) {
-                echo "Aucun objet dans cette catégorie";
-                }
-                $data2 = mysqli_fetch_assoc($result2);
-                echo"<div class='panel-footer'>". $data2['Pseudo'] ."</div>";
-              echo"</div>";
-            echo"</div>";
-          
-            
-            }
-            echo "</div>";
-             
-            }
-
-        }
-
-?>  
-  
-    
+	<div align="text-center" style="height: 100%;">
+		<h1 style="color: green;">PAIEMENT ACCEPTE</h1>
+	</div>
 
 
 
-<footer class="page-footer">
+	<footer class="page-footer">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">

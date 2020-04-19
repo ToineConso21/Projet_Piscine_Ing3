@@ -104,7 +104,7 @@
 
   $ID=isset($_POST["bouton"])? $_POST["bouton"] : "";
 
-  $conn=mysqli_connect('localhost','root','','ece_ebay');
+  $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
   if (!$conn) {
     echo "Erreur de connexion a la bdd";
@@ -183,7 +183,7 @@
 
 /*------------------------------------------------Affichage de l'interaction avec Achat Direct------------------------------------*/
 
-                  if($data['TypeVente2']=="achatDirect" || $data['TypeVente2']=="achatDirect")
+                  if($data['TypeVente1']=="VenteDirect" || $data['TypeVente2']=="VenteDirect")
                 {
 
                      $sql4="SELECT * FROM achat_Direct WHERE ID_items ='".$ID."'";
@@ -199,7 +199,8 @@
                       echo"<td>Prix : ".$data4['Prix']."</td>";
                        echo"</tr>" ;
                         echo"<tr>";
-                       echo "<td><button type='submit' value='' class='btn btn-primary'>Acheter</button><td>";
+                       echo "<td><form action='../Paiement/commandeP1.php' method='post'>
+                 <button type='submit' name='Acheter_btn' class='btn btn-primary' value='".$ID."' >Acheter </button> </form><td>";
                         echo"</tr>" ;
                         
                        
