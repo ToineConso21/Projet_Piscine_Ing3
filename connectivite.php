@@ -16,19 +16,16 @@
 	}
 	else{
 		if ($statut=="Admin") {
-			$sql="SELECT Pseudo, Mdp FROM admin WHERE Pseudo = '".$login."' AND  Mdp = '".$mdp."'";
-
-			$result=mysqli_query($conn,$sql);
-
-				if (mysqli_num_rows($result)==0) {
-					echo "Identifiant ou Mot de passe incorrects";
-				}
-
-				else{
+			
+			if($login=="Admin" && $mdp=="Poire")
+				{
 					$_SESSION['user_id']=$login;
 					$_SESSION['user_type']=$statut;
 					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
 				}
+	
+					
+			
 		}
 
 		if ($statut=="Vendeur") {

@@ -63,8 +63,9 @@
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
           ?>
           <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
+        
           <?php
-        } 
+        }
         ?>
 
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
