@@ -135,8 +135,7 @@
 
             echo "    <div style=' padding-left: 20px; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; '>";
             $image = $data['Photo'];
-            echo "<td>" . "<img src='$image' height='274' width='260'>" .
-            "</td>";
+            echo "<td>" . "<img src='imgs/$image' height='274' width='260'>" . "</td>";
             echo "</div>";
             echo "<div style='width: 400px; margin-right: 10px; background-color: #A47D74'>";
             echo "<h1>" . $data['Nom'] . "</h1><br>";
@@ -144,17 +143,131 @@
             echo "<br><br><br><h4>Cet item appartient à cette catégorie : " . $data['Categorie'] . "</h4>";
             echo "</div>";
 
-            echo "<div style=' width: 300px; background-color: grey; margin-right: 10px;'>";
+            echo "<div style=' width: 450px; background-color: grey; margin-right: 10px;'>";
             echo "<center>";
-            echo "<h3>Cet item est disponible en : </h3><br>";
-            echo "<br><h2>". $data['TypeVente1'] . "</h2>";
+            echo "<h3>Cet item est disponible en : </h3>";
+            echo "<h2>". $data['TypeVente1'] . "</h2><br>";
+
+            $tmp = $data['ID'];
+
+            if ($data['TypeVente1'] == 'Enchere' ) 
+            {
+                $sql2 = "SELECT * FROM encheres WHERE ID_Items LIKE  '$tmp' ";
+
+                $result2 = mysqli_query($conn, $sql2);
+
+                  $data2 = mysqli_fetch_assoc($result2);
+                
+                  $id_date_fin_enchere = $data2['Date_fin'];
+                  
+                
+
+              echo "<h4>Date de fin : " . $id_date_fin_enchere . "</h4><br>";
+              echo "<div>
+                        <div>
+                          <h4>Statut :</h4>
+                        </div>
+                        <div>
+                          <h3 style='color: green;'>Enchère en cours</h3>
+                        </div>
+                      </div>";
+            }
+
+            if ($data['TypeVente1'] == 'VenteDirect' ) 
+            {
+          
+              echo "<div>
+                        <div>
+                          <h4>Statut :</h4>
+                        </div>
+                        <div>
+                          <h3 style='color: green;'>Achat Direct en cours</h3>
+                        </div>
+                      </div>";
+            }
+            if ($data['TypeVente1'] == 'Offres' ) 
+            {
+                $sql2 = "SELECT * FROM offres WHERE ID_items =   '".$tmp."' ";
+
+                $result2 = mysqli_query($conn, $sql2);
+
+                $data2 = mysqli_fetch_assoc($result2);
+
+                $round=$data2['Round'];
+                  
+                $decompte = '5'-$round;
+
+              echo "<h6>Round : " . $round . " Il en reste : " . $decompte . "</h6>";
+              echo "<h4>Statut :</h4>
+                    <h3 style='color: green;'>Offre en cours</h3>";
+
+                $sql3 = "SELECT * FROM offres WHERE ID_items =   '".$tmp."' ";
+
+                $result3 = mysqli_query($conn, $sql3);
+
+                $data3 = mysqli_fetch_assoc($result3);
+
+                $id_acheteur=$data3['ID_acheteurs'];
+
+
+                $sql4 = "SELECT * FROM acheteurs WHERE ID =  '".$id_acheteur."' ";
+
+                $result4 = mysqli_query($conn, $sql4);
+
+                $data4 = mysqli_fetch_assoc($result4);
+
+                $nom_acheteur=$data4['Nom'];
+
+                $sql4 = "SELECT * FROM offres WHERE ID_items =  '".$tmp."' ";
+
+                $result3 = mysqli_query($conn, $sql3);
+
+                $data3 = mysqli_fetch_assoc($result3);
+
+                $montant=$data3['Montant'];
+
+                echo "<table>
+                        </tr>
+                          <td>Derniere offre de " . $nom_acheteur . " : <strong>" . $montant . " euros  </strong></td>
+                          <td><button type='button' name='accept_offre'>Accepter l'offre</button></td>
+                        </tr>
+                      </table>";
+
+                echo "<form>
+                        <table>
+                          </tr>
+                            <td><p>Nouvelle Offre : </p></td>
+                            <td><input type='text' name='nouvelle_offre'></input></td>
+                            <td><button type='button' name='accept_offre'>Envoyez la contre-offre</button></td>
+                          </tr>
+                        </table>
+                      </form>";
+
+
+            }
+
             if ($data['TypeVente2'] == 'VenteDirect' ) 
             {
               echo "<br><br><h2>" . $data['TypeVente2'] . "</h2>";
+
+              echo "<div>
+                        <div>
+                          <h4>Statut :</h4>
+                        </div>
+                        <div>
+                          <h3 style='color: green;'>Achat Direct en cours</h3>
+                        </div>
+                      </div>";
             }
+
             echo "</div>";
 
-            echo "<button type='button' style='margin-top:20px; margin-left: 20px; width:200px; height:40px;'>Supprimer</button> ";
+
+            echo "
+              <form action='mesObjetsAction.php' method='post'>
+                 <button type='submit' name='Supprimer_btn' style=' margin: auto; height: 40px;' value='".$data['ID']."' >Supprimer </button>
+              </form>
+            ";
 
 
         echo "</div>";
@@ -165,20 +278,11 @@
   }
 
 ?>
-
-  <div style="border-style: double; display: flex; flex-direction: row; margin-top: 50px; margin-bottom: 50px; margin-left: 60px; margin-right: 60px;">
-
+<div>
     <a href="ajouterObjet.php"> <button type='button' style='margin-top:20px; margin-left: 20px; width:200px; height:40px;'>Ajouter un Objet</button> </a>
-  </div>
+</div>
 
 
-  <div>
-
-    <form action="bid.php">
-      <input type="text" name="nouvelle_offre">Nouvelle Offre : </input>
-      <button type="submit">Envoyer</button>
-    </form>
-  </div>
 
   <br>
 

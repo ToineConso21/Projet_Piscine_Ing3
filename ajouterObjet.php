@@ -154,11 +154,11 @@
         <tr>
           <td>A quelle catégorie appartient-il ?</td>
           <td>
-            <input type="radio" name="categorie_objet" value="Ferraille ou Trésor" required>
-            <label>Ferraille ou Trésor</label><br>
-            <input type="radio" name="categorie_objet" value="Bon pour le Musée" required>
-            <label>Bon pour le Musée</label><br>
-            <input type="radio" name="categorie_objet" value="Accessoire VIP" required>
+            <input type="radio" name="categorie_objet" value="ferraille ou Tresor" required>
+            <label>Ferraille ou tresor</label><br>
+            <input type="radio" name="categorie_objet" value="Bon pour le musee" required>
+            <label>Bon pour le musee</label><br>
+            <input type="radio" name="categorie_objet" value="accessoire VIP" required>
             <label>Accessoire VIP</label>
           </td>
         </tr>

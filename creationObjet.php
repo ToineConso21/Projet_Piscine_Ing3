@@ -79,7 +79,7 @@
 
 				$result=mysqli_query($conn,$sql);
 				if ($result) {
-echo "Votre items a bien été crée dans la bdd items!";
+				echo "Votre items a bien été crée dans la bdd items!";
 
 
 						/*----------------------Si l'objet ne peut se vendre qu'en Enchere : --------------------------*/
@@ -114,7 +114,7 @@ echo "Votre items a bien été crée dans la bdd items!";
 
 							}
 						/*-------------------------Si l'objet ne peut se vendre qu' en Offres : -----------------------*/
-
+/*
 						elseif ($prix_min == 0 && $prix_init != 0 && $prix_fixe == 0 ) {
 
 								$sql2 = "SELECT * FROM items";
@@ -149,7 +149,7 @@ echo "Votre items a bien été crée dans la bdd items!";
 								else
 									echo "On a ajouté dans la bdd offres l'item ";
 
-							}	
+							}	*/
 						/*-------------------------Si l'objet ne peut se vendre qu' en VenteDirect : -----------------------*/
 
 						elseif ($prix_min == 0 && $prix_init == 0 && $prix_fixe != 0) {
@@ -247,10 +247,10 @@ echo "Votre items a bien été crée dans la bdd items!";
 									}
 								}
 
-								$sql3 = " INSERT INTO offres (ID_acheteurs, ID_vendeur, ID_items, Round, Montant) VALUES ('$id_acheteur', '$id_vendeur', '$id_items', '$round', '$prix_init')";
+						/*		$sql3 = " INSERT INTO offres (ID_acheteurs, ID_vendeur, ID_items, Round, Montant) VALUES ('$id_acheteur', '$id_vendeur', '$id_items', '$round', '$prix_init')";
 								$result3= mysqli_query($conn,$sql3);
 								echo "On a ajouté dans la bdd offres l'item ";
-
+						*/
 								$sql4 = " INSERT INTO achat_direct (Prix, ID_Items) VALUES ('$prix_fixe', '$id_items')";
 								$result4= mysqli_query($conn,$sql4);
 								echo "On a ajouté dans la bdd achat_direct l'item ";
