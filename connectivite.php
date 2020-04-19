@@ -17,7 +17,7 @@
 	else{
 		if ($statut=="Admin") {
 			
-			if($login=="Admin" && $mdp=="Poire")
+			if($login=="BillyBob" && $mdp=="Becker")
 				{
 					$_SESSION['user_id']=$login;
 					$_SESSION['user_type']=$statut;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 19 avr. 2020 à 12:38
+-- Généré le :  Dim 19 avr. 2020 à 17:13
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -151,11 +151,11 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`ID`, `Nom`, `Photo`, `Description`, `Video`, `Categorie`, `TypeVente1`, `TypeVente2`, `ID_Vendeur`) VALUES
-(1, 'Montre', '', 'Belle montre ancienne', '', 'VIP', 'Enchere', 'achatDirect', 5),
-(3, 'Lampe', '', 'Lumière', '', 'VIP', 'Offres', '', 7),
-(4, 'Tapis', '', 'Tapisserie suisse', '', 'Bon pour Musée', 'Offres', '', 9),
-(5, 'Panda', '', 'Roux', '', 'Musée', 'Offres', '', 9),
-(6, 'Koala', '', 'bete', '', 'VIP', 'Offres', '', 6);
+(1, 'Montre', 'montre.jpg', 'Belle montre ancienne', '', 'VIP', 'Enchere', 'achatDirect', 5),
+(3, 'Besace', 'besace.jpg', 'Ancienne besace tres estetique', '', 'ferraille', 'Offres', 'achatDirect', 7),
+(4, 'Peinture de Albert BOULOUBOU', 'peinture.jpg', 'Tapisserie suisse', '', 'musee', 'Offres', '', 9),
+(5, 'Meuble', 'meuble.jpg', 'Roux', 'https://www.youtube.com/watch?v=ZXbbabwwtIc', 'ferraille', 'Enchere', '', 9),
+(6, 'Coffre', 'coffre.jpg', 'bete', '', 'ferraille', 'Offres', '', 6);
 
 -- --------------------------------------------------------
 

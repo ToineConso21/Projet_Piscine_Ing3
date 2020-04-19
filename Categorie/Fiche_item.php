@@ -24,9 +24,8 @@
 
 
 </head>
-
 <body>
-
+<!---------------------------------------------Affichage Du Header------------------------------------------------------------->
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
@@ -45,55 +44,63 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="Accueil.php">Accueil</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
-            <li><a href="musee.php">Bon pour le musée</a></li>
-            <li><a href="VIP.php">Acessoire VIP</a></li>
-          </ul>
-          </li>
-
-          <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
-            ?>
-            <li><a href="#">Vendre</a></li>
-            <?php
-          } 
-          ?>
-          
-          <?php if (isset($_SESSION['user_login'])) {
-            ?>
-            <li><a href="#">Mon Compte</a></li>
-            <?php
-          } 
-          ?>
-          
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="../Accueil.php">Accueil</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
+          <li><a href="musee.php">Bon pour le musée</a></li>
+          <li><a href="VIP.php">Acessoire VIP</a></li>
         </ul>
+      </li>
+        <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="#">Vendre</a></li>
+          <?php
+        } 
+        ?>
+        
+        <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
+          <?php
+        } 
+        ?>
+         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/Utilisateurs.php">Utilisateurs</a></li>
+        
+          <?php
+        }
+        ?>
 
-        <ul class="nav navbar-nav navbar-right">
-            <?php if(!isset($_SESSION['user_type'])) {
-              ?>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
-                <li><a href="#">Connexion</a></li>
-              <?php
-            } 
-            ?>
-
-            <?php if (isset($_SESSION['user_id'])) {
-              ?>
-              <li><a href="http://localhost/Projet_Piscine_Ing3/sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
-            <?php
-
-              }
-            ?>
-
-          </ul>
-
+        <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteAcheteur.php">Mon Compte</a></li>
+          <?php
+        } 
+        ?>
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <?php if(!isset($_SESSION['user_type'])) {
+          ?>
+            <li><a href="comptesCrea/signUp_Acheteur.php"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+            <li><a href="Connexion.php">Connexion</a></li>
+          <?php
+        } 
+        ?>
+        <?php if (isset($_SESSION['user_id'])) {
+          ?>
+          <li><a href="sessMgmt/logout.php" title="Logout"><img src="../imgs/logout.png" style="size: relative;"></a></li>
+        <?php
+          }
+        ?>
+        </ul>
     </div>
   </div>
 </nav>
+
 <br>
 <br>
 <br>

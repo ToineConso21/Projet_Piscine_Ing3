@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="util.css">
+<link rel="stylesheet" type="text/css" href="../util.css">
 
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -45,7 +45,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.php">Accueil</a></li>
+        <li class="active"><a href="../Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
@@ -101,83 +101,69 @@
     </div>
   </div>
 </nav>
-
-<header class="page-header header container-fluid">
-<div class="overlay"></div>
-  <div class="description">
-  <h1>Bienvenue sur ECE_Bay!</h1>
-      <p>
-       Nous avons fait le maximum pour vous faciliter la prise en main de ce site et rendre votre expérience plus plaisante !
-      </p>
-      </div>
-
-  <div class="description2">
-      <p>
-        Vous avez en bas de cette page les items ajouté récemment par nos vendeurs. Allez jeter un coup d'oeil et passez un agreable moment sur notre site !  
-      </p>
-    </div>
-</header>
-
-
-
-<div class="container features" >
-    <div class="row">
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-          </div>
-        </div>
 <br>
-<div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-      <div class="col-sm-3">
-            <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
-            </div>
-        </div>
-      <div class="col-sm-3">
-              <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
-              </div>
-            </div>
-          </div>
-        </div>
 <br>
+<br>
+
+
+<div><h4><strong>Mes vendeurs</strong></h4> <br>
+        <hr class="new4">  
+    <br>
+    <br>
+
+<?php
+ 
+
+  
+  $conn=mysqli_connect('localhost','root','','ece_ebay');
+
+  if (!$conn) {
+    echo "Erreur de connexion a la bdd";
+  }
+  else {
+
+          $sql="SELECT * FROM vendeur"; // On Selectionne les objets de la categorie Ferraille 
+          $result=mysqli_query($conn,$sql);
+
+
+          if (mysqli_num_rows($result)==0) {
+            echo "Aucun objet dans cette catégorie";
+            }
+
+          else{
+
+
+                 
+            echo "<table>";
+            while ($data= mysqli_fetch_assoc($result)) {   // Affichage de tous les objets sélectionnés 
+             
+              echo"<tr>";
+              $image=$data['Pdp'];
+              echo"<td><img src='../pdp/$image' class='img-thumbnail ' alt='Image' width='274' height='166' ></td>";
+              echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Nom']."</td>";
+              echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Prenom']."</td>";
+               echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Pseudo']."</td>";
+               echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Email']."</td>";
+
+               echo"<td>&nbsp;&nbsp;<form action='' method=''>";
+                echo "<button type='submit' name='Supprime_btn' value='".$data['ID']."'>Supprimer</button>";
+                echo"</form></td>";
+                echo"</tr>";
+                   }
+              echo "</table>";
+             
+            }
+
+        }
+
+ 
+
+?>
+
+<br>
+<br>
+<br>
+
 <footer class="page-footer">
   <div class="container">
     <div class="row">

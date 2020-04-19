@@ -46,7 +46,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.php">Accueil</a></li>
+        <li class="active"><a href="../Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
@@ -67,6 +67,13 @@
           <?php
         } 
         ?>
+         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/Utilisateurs.php">Utilisateurs</a></li>
+        
+          <?php
+        }
+        ?>
 
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
           ?>
@@ -86,7 +93,7 @@
         ?>
         <?php if (isset($_SESSION['user_id'])) {
           ?>
-          <li><a href="sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+          <li><a href="sessMgmt/logout.php" title="Logout"><img src="../imgs/logout.png" style="size: relative;"></a></li>
         <?php
           }
         ?>
@@ -136,7 +143,7 @@
               echo "<div class='col-sm-3'>";
               echo "<div class='container'>";  
               $image = $data['Photo'];
-              echo "<img src='../imgs/$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
+              echo "<img src='../imgs/$image' class='img-thumbnail ' alt='Image' width='224' height='116' >";
               echo"</div>";
               echo"</div>";
                echo"<div class='col-sm-3'>";
@@ -144,13 +151,25 @@
                 echo"<div class='panel-heading'> ". $data['Nom'] ."</div>";
                 echo"<div class='panel-body'>". $data['Description']."<br>";
                 echo "Type de vente de cet objet :<br>";
-                 echo $data['TypeVente1']."&nbsp &nbsp <br>";
-                  echo $data['TypeVente2']."&nbsp &nbsp <br>";
-                  echo"<form action='Fiche_item.php' method='post'>";//lien vers la page fiche item
-                  echo "ID de l'objet : ".$data['ID']."<br>";
+                 echo $data['TypeVente1']."<br>";
+                  echo $data['TypeVente2']."<br>";
+                  if($_SESSION['user_type'] == "Admin")
+                  {
+                     echo"<form action='' method='post'>";
+                    echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Supprimer</button><br>";
+                      echo "</form>";
+                  }
+                  else{ 
+                    echo "ID de l'objet : ".$data['ID']."<br>";
+                    
+                     echo"<form action='Fiche_item.php' method='post'>";    //lien vers la page fiche item
                 echo "<button type='submit' name='bouton' value='".$data['ID']."' >Voir</button>";
                 echo "</form>";
+                echo"<form action='' method='post'>";
                 echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>";
+                 echo "</form>";
+                  }
+                 
                 echo"</div>" ;
                 $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
                 $result2 = mysqli_query($conn,$sql2);
