@@ -15,7 +15,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="util.css">
+<link rel="stylesheet" type="text/css" href="../util.css">
 
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -101,7 +101,7 @@
 <br>
 
 
-       <div><h4><strong>Accessoires VIP</strong></h4> <br>
+       <div><h4><strong>Bon pour le Musée</strong></h4> <br>
         <hr class="new4">  
         
        </div> 
@@ -138,7 +138,7 @@
               echo "<div class='col-sm-3'>";
               echo "<div class='container'>";  
               $image = $data['Photo'];
-              echo "<img src='$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
+              echo "<img src='../imgs/$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
               echo"</div>";
               echo"</div>";
                echo"<div class='col-sm-3'>";
