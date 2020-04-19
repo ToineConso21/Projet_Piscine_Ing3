@@ -29,7 +29,7 @@
 
 	$database = "ece_ebay";
 
-	$conn=mysqli_connect('localhost','root','','ece_ebay');
+	$conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
 	if (!$conn) {
 		echo "Erreur de connexion a la bdd";
@@ -48,6 +48,8 @@ VALUES ('$nom_acheteur', '$prenom_acheteur', '$email_acheteur', '$mdp', '$adress
 				$result=mysqli_query($conn,$sql);
 				if ($result==1) {
 						echo "Votre compte Acheteur a bien été crée !";
+						header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
+
 				}
 				else
 						echo "CHEH";

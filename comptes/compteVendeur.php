@@ -1,6 +1,6 @@
 <?php
 	session_start();
-  require_once('session.php');
+  require_once('../sessMgmt/session.php');
 ?>
 
 <!DOCTYPE html>
