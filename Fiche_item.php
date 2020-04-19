@@ -1,39 +1,31 @@
 <?php
   session_start();
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Ebay ECE - Sign in</title>
-	<meta charset="utf-8">
-
-</head>
-
-<style>
-	/* Thick red border */
-	hr.new4 {
-	  border: 1px solid black;
-	}
-
-	.vl {
-  border-left: 6px black;
-  height: 50px;
-}
-</style>
-
-	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <title>Ebay ECE</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <link href="util.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="util.css">
+
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+ $('.header').height($(window).height());
+ });
+</script>
+
 
 </head>
 
-
-<body style="align-content: center;">
+<body>
 
 <div class="jumbotron">
   <div class="container-fluid">
@@ -58,9 +50,9 @@
           <li class="active"><a href="Accueil.php">Accueil</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Féraille ou Trésor</a></li>
-            <li><a href="#">Bon pour le musée</a></li>
-            <li><a href="#">Acessoire VIP</a></li>
+            <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
+            <li><a href="musee.php">Bon pour le musée</a></li>
+            <li><a href="VIP.php">Acessoire VIP</a></li>
           </ul>
           </li>
 
@@ -106,6 +98,7 @@
 <br>
 <br>
 
+
 <?php 
 
 
@@ -126,37 +119,97 @@
             }
         $data= mysqli_fetch_assoc($result);
         echo "<div class='row'>";
-         echo "<div class='col-sm-6>";
+          echo "<div class='col-sm-6 style='height='600px';'>";
               echo "<div class='container'>";
                 $image = $data['Photo'];
                 echo "<img src='$image' class='img-thumbnail ' alt='Image' width='374' height='266' >";
               echo"</div>";
             echo"</div>";
-          echo"<div class='col-sm-6'>";
-            echo "<h1><strong>".$data['Nom']."</strong></h1><br>";
-            echo $data['Description']."<br>";
+          echo"<div class='col-sm-6' id='fiche'>";
+           echo "<h1 ><strong>".$data['Nom']."</strong></h1><br>";
+            echo"<table>";
+              echo"<tr>";
+                echo"<td>".$data['Description']."</td>";
+               echo"</tr>";
 
             $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
             $result2 = mysqli_query($conn,$sql2);
+             if (mysqli_num_rows($result2)==0) { echo "Erreur sql2";};
+
             $data2 = mysqli_fetch_assoc($result2);
-            echo "Veudeur : ".$data2['Pseudo']."<br>";
-            
-                if($data['TypeVente1']=="Enchere" || $data['TypeVente2']=="Enchere")
+            echo"<tr>";
+              echo"<td>Vendeur : ".$data2['Pseudo']."</td>";
+            echo "</tr>"; 
+
+        
+             
+/*------------------------------------------------Affichage de l'interaction avec enchère------------------------------------*/
+
+                if($data['TypeVente1']=="Enchere")
                 {
                     $sql3="SELECT * FROM encheres WHERE ID_items ='".$ID."'";
                      $result3 = mysqli_query($conn,$sql3);
+                      if (mysqli_num_rows($result3)==0) {
+                            echo "Aucune enchere trouvé";
+                           }
                       $data3 = mysqli_fetch_assoc($result3);
-                      echo"<stong>Prix minimum fixé par le Vendeur : ".$data3['Prix']."</strong><br>";
-                      echo"Date de fin de l'enchère :".$data2['Date_fin']."<br>";
-                      echo"<form>";
-                        echo"Faire une Enchère :<br>";
-                        echo"<input type='text' name='enchere' value='newPrix'>";
-                        echo "$nbsp;$nbsp; <input type='submit'value='Enchrir'>";
-                      echo"</form>";}
-          echo "</div>";
-          echo "</div>";
+                      echo"<tr>";
+                      echo"<td><stong>Prix minimum fixé par le Vendeur : ".$data3['Prix']."</strong></td>";
+                      echo"</tr>";
+                      echo"<tr>";
+                      echo"<td>Date de fin de l'enchère :".$data3['Date_fin']."</td>";
+                       echo"</tr>";
+                      echo"<tr>";
+                        echo"<td>Faire une Enchère :</td>";
+                         echo"</tr>";
+                        echo"<tr>";
+                        echo"<td><input type='text' name='enchere'> &nbsp;&nbsp<button  name='bouton' value='5' class='btn btn-primary'>Encherir</button></td>";
+                         echo"</tr>";
+                        
+                      }
 
 
+/*------------------------------------------------Affichage de l'interaction avec Negociation------------------------------------*/
+                 
+
+                 if($data['TypeVente1']=="Offres")
+                {
+                      echo"<tr>";
+                      echo"<td>Faire une Offre pour cette objet : </td>" ;
+                     
+                        echo"<td><input type='text' name='nego'>&nbsp;&nbsp; <button class='btn btn-primary'>Envoyer</button></td>";
+                         echo"</tr>" ;
+                    }
+
+/*------------------------------------------------Affichage de l'interaction avec Achat Direct------------------------------------*/
+
+                  if($data['TypeVente2']=="achatDirect" || $data['TypeVente2']=="achatDirect")
+                {
+
+                     $sql4="SELECT * FROM achat_Direct WHERE ID_items ='".$ID."'";
+                     $result4 = mysqli_query($conn,$sql4);
+                      if (mysqli_num_rows($result4)==0) {
+                            echo "Erreur sql2";
+                       }
+                      $data4 = mysqli_fetch_assoc($result4);
+                       echo"<tr>";
+                      echo"<td>Achat Direct</td>";
+                       echo"</tr>" ;
+                      echo"<tr>";
+                      echo"<td>Prix : ".$data4['Prix']."</td>";
+                       echo"</tr>" ;
+                        echo"<tr>";
+                       echo "<td><button type='submit' value='' class='btn btn-primary'>Acheter</button><td>";
+                        echo"</tr>" ;
+                        
+                       
+                    }
+
+                    echo"</table>";
+          echo "</div>";
+        echo "</div>";
+        
+           
 
 
 
@@ -165,6 +218,12 @@
 
 ?>
 
+
+
+<br>
+<br>
+<br>
+<br>
 
 
 <footer class="page-footer">

@@ -103,7 +103,7 @@
         <hr class="new4">  
         
        </div> 
-       
+    <div style>   
         
       
 <?php
@@ -119,7 +119,7 @@
   }
   else {
 
-          $sql="SELECT * FROM items WHERE Categorie = 'ferraille'";
+          $sql="SELECT * FROM items WHERE Categorie = 'ferraille'"; // On Selectionne les objets de la categorie Ferraille 
           $result=mysqli_query($conn,$sql);
 
 
@@ -131,10 +131,10 @@
 
 
                  
-            echo "<div class='row'>";
-            while ($data= mysqli_fetch_assoc($result)) {
+           echo "<div class='row'>";
+            while ($data= mysqli_fetch_assoc($result)) {   // Affichage de tous les objets sélectionnés 
               echo "<div class='col-sm-3'>";
-              echo "<div class='container'>";
+              echo "<div class='container'>";  
               $image = $data['Photo'];
               echo "<img src='$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
               echo"</div>";
@@ -146,14 +146,17 @@
                 echo "Type de vente de cet objet :<br>";
                  echo $data['TypeVente1']."&nbsp &nbsp <br>";
                   echo $data['TypeVente2']."&nbsp &nbsp <br>";
-                  echo"<form action='Fiche_item.php' method='post'>";
+                  echo"<form action='Fiche_item.php' method='post'>";//lien vers la page fiche item
                   echo "ID de l'objet : ".$data['ID']."<br>";
-                echo "<button type='submit' name='bouton' value='".$data['ID']."'>Voir</button>";
+                echo "<button type='submit' name='bouton' value='".$data['ID']."' >Voir</button>";
                 echo "</form>";
-                echo "<button type='submit' name='bouton' value='".$data['ID']."'>Ajouter au panier</button><br>";
+                echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>";
                 echo"</div>" ;
                 $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
                 $result2 = mysqli_query($conn,$sql2);
+                 if (mysqli_num_rows($result2)==0) {
+                echo "Aucun objet dans cette catégorie";
+                }
                 $data2 = mysqli_fetch_assoc($result2);
                 echo"<div class='panel-footer'>". $data2['Pseudo'] ."</div>";
               echo"</div>";

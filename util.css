@@ -192,3 +192,8 @@ h4{
 	font-size: 100;
 	text-align: center;
 }
+.fiche{
+	border-width:1px;
+ 	border-style:dotted;
+ 	border-color:black;
+}

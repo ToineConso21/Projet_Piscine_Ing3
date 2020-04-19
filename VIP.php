@@ -26,7 +26,7 @@
 
 </head>
 <body>
-
+<!---------------------------------------------Affichage Du Header------------------------------------------------------------->
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
@@ -103,17 +103,12 @@
         <hr class="new4">  
         
        </div> 
-       
+    <div style>   
         
       
 <?php
  
- $achat_im = isset($_POST['achat_im'])? $_POST['achat_im'] : "";
-  $offre = isset($_POST['offre'])? $_POST['offre'] : "";
-    $enchere = isset($_POST['enchere'])? $_POST['enchere'] : "";
-
-    $categorie = isset($_POST['categorie'])? $_POST['categorie'] : "";
-    
+ 
 
   
   
@@ -124,7 +119,7 @@
   }
   else {
 
-          $sql="SELECT * FROM items WHERE Categorie = 'VIP'";
+          $sql="SELECT * FROM items WHERE Categorie = 'VIP'"; // On Selectionne les objets de la categorie VIP 
           $result=mysqli_query($conn,$sql);
 
 
@@ -135,11 +130,11 @@
           else{
 
 
-                
-            echo "<div class='row'>";
-            while ($data= mysqli_fetch_assoc($result)) {
+                 
+           echo "<div class='row'>";
+            while ($data= mysqli_fetch_assoc($result)) {   // Affichage de tous les objets sélectionnés 
               echo "<div class='col-sm-3'>";
-              echo "<div class='container'>";
+              echo "<div class='container'>";  
               $image = $data['Photo'];
               echo "<img src='$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
               echo"</div>";
@@ -151,28 +146,32 @@
                 echo "Type de vente de cet objet :<br>";
                  echo $data['TypeVente1']."&nbsp &nbsp <br>";
                   echo $data['TypeVente2']."&nbsp &nbsp <br>";
-                echo "&nbsp &nbsp <input type='button' value='Ajouter' href='#' width='20px' height='50px'>";
-                echo "&nbsp &nbsp <input type='button' value='voir' href='#' width='20px' height='50px'><br>";
+                  echo"<form action='Fiche_item.php' method='post'>";//lien vers la page fiche item
+                  echo "ID de l'objet : ".$data['ID']."<br>";
+                echo "<button type='submit' name='bouton' value='".$data['ID']."' >Voir</button>";
+                echo "</form>";
+                echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>";
                 echo"</div>" ;
                 $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
                 $result2 = mysqli_query($conn,$sql2);
+                 if (mysqli_num_rows($result2)==0) {
+                echo "Aucun objet dans cette catégorie";
+                }
                 $data2 = mysqli_fetch_assoc($result2);
                 echo"<div class='panel-footer'>". $data2['Pseudo'] ."</div>";
               echo"</div>";
             echo"</div>";
-             
-             
-              
+          
+            
             }
             echo "</div>";
              
-
             }
 
         }
 
-?>	
-	
+?>  
+  
     
 
 
