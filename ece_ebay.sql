@@ -2,9 +2,9 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3308
--- Généré le :  ven. 17 avr. 2020 à 15:43
--- Version du serveur :  5.7.28
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 19 avr. 2020 à 12:38
+-- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `achat_direct` (
   `ID_Items` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_Items` (`ID_Items`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -61,16 +61,18 @@ CREATE TABLE IF NOT EXISTS `acheteurs` (
   `Nom_carte` varchar(255) NOT NULL,
   `Date_exp` date NOT NULL,
   `Code` int(11) NOT NULL,
+  `Solde` int(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `acheteurs`
 --
 
-INSERT INTO `acheteurs` (`ID`, `Nom`, `Prenom`, `Email`, `Mdp`, `Adresse1`, `Adresse2`, `Ville`, `Code_Postal`, `Pays`, `Tel`, `Type_paiement`, `Num_carte`, `Nom_carte`, `Date_exp`, `Code`) VALUES
-(1, 'Marcel', 'Pagnol', 'pagno@ece.fr', 'marcel', 'nanaj 75', '', 'Pananame', 75001, 'France', 46546488, 'MASTERCARD', 454546446, 'G ELEM ME', '2020-05-14', 9598),
-(2, 'fz', 'zfe', 'zffez@zfefz', 'fe', 'zefze', 'zeffez', 'VFDSC', 543, 'VFD', 6534, 'VISA', 354, 'GF', '2028-07-22', 5334);
+INSERT INTO `acheteurs` (`ID`, `Nom`, `Prenom`, `Email`, `Mdp`, `Adresse1`, `Adresse2`, `Ville`, `Code_Postal`, `Pays`, `Tel`, `Type_paiement`, `Num_carte`, `Nom_carte`, `Date_exp`, `Code`, `Solde`) VALUES
+(1, 'Marcel', 'Pagnol', 'pagno@ece.fr', 'marcel', 'nanaj 75', '', 'Pananame', 75001, 'France', 46546488, 'MASTERCARD', 454546446, 'G ELEM ME', '2020-05-14', 9598, 30),
+(2, 'fz', 'zfe', 'zffez@zfefz', 'fe', 'zefze', 'zeffez', 'VFDSC', 543, 'VFD', 6534, 'VISA', 354, 'GF', '2028-07-22', 5334, 0),
+(3, 'jean', 'paul', 'paul@ece.fr', 'paul', 'sonAdresse', '', 'Paris', 75016, 'France', 550055005, 'Mastercard', 550055000, 'Paul Jean', '2020-04-15', 985, 800);
 
 -- --------------------------------------------------------
 
@@ -83,11 +85,20 @@ CREATE TABLE IF NOT EXISTS `bid` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_encheres` int(11) NOT NULL,
   `ID_acheteurs` int(11) NOT NULL,
-  `Horaire` date NOT NULL,
   `Montant` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `ID_encheres` (`ID_encheres`,`ID_acheteurs`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `ID_encheres` (`ID_encheres`,`ID_acheteurs`),
+  KEY `ID_acheteurs` (`ID_acheteurs`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `bid`
+--
+
+INSERT INTO `bid` (`ID`, `ID_encheres`, `ID_acheteurs`, `Montant`) VALUES
+(1, 1, 3, 50),
+(12, 1, 1, 60),
+(17, 1, 2, 75);
 
 -- --------------------------------------------------------
 
@@ -99,8 +110,8 @@ DROP TABLE IF EXISTS `encheres`;
 CREATE TABLE IF NOT EXISTS `encheres` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Prix` int(11) NOT NULL,
-  `Date_debut` date NOT NULL,
-  `Date_fin` date NOT NULL,
+  `Date_debut` datetime NOT NULL,
+  `Date_fin` datetime NOT NULL,
   `ID_items` int(11) NOT NULL,
   `Statut` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
@@ -112,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `encheres` (
 --
 
 INSERT INTO `encheres` (`ID`, `Prix`, `Date_debut`, `Date_fin`, `ID_items`, `Statut`) VALUES
-(1, 35, '2020-04-01', '2020-04-08', 1, 0);
+(1, 76, '2020-04-08 00:00:00', '2020-04-30 00:00:00', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -132,8 +143,8 @@ CREATE TABLE IF NOT EXISTS `items` (
   `TypeVente2` varchar(255) NOT NULL,
   `ID_Vendeur` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_Vendeur` (`ID_Vendeur`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `ID_Vendeur` (`ID_Vendeur`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `items`
@@ -141,7 +152,10 @@ CREATE TABLE IF NOT EXISTS `items` (
 
 INSERT INTO `items` (`ID`, `Nom`, `Photo`, `Description`, `Video`, `Categorie`, `TypeVente1`, `TypeVente2`, `ID_Vendeur`) VALUES
 (1, 'Montre', '', 'Belle montre ancienne', '', 'VIP', 'Enchere', 'achatDirect', 5),
-(2, 'Meuble', '', 'Meuble moderne', '', 'ferraille', 'nego', 'achatDirect', 6);
+(3, 'Lampe', '', 'Lumière', '', 'VIP', 'Offres', '', 7),
+(4, 'Tapis', '', 'Tapisserie suisse', '', 'Bon pour Musée', 'Offres', '', 9),
+(5, 'Panda', '', 'Roux', '', 'Musée', 'Offres', '', 9),
+(6, 'Koala', '', 'bete', '', 'VIP', 'Offres', '', 6);
 
 -- --------------------------------------------------------
 
@@ -151,15 +165,27 @@ INSERT INTO `items` (`ID`, `Nom`, `Photo`, `Description`, `Video`, `Categorie`, 
 
 DROP TABLE IF EXISTS `offres`;
 CREATE TABLE IF NOT EXISTS `offres` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_acheteurs` int(11) NOT NULL,
   `ID_vendeur` int(11) NOT NULL,
   `ID_items` int(11) NOT NULL,
   `Round` int(11) NOT NULL,
   `Montant` int(11) NOT NULL,
+  `Changement` tinyint(1) NOT NULL,
+  `Decision` varchar(255) NOT NULL DEFAULT 'Refuse',
   PRIMARY KEY (`ID`),
-  KEY `ID_acheteurs` (`ID_acheteurs`,`ID_vendeur`,`ID_items`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `ID_acheteurs` (`ID_acheteurs`,`ID_vendeur`,`ID_items`),
+  KEY `ID_items` (`ID_items`),
+  KEY `ID_vendeur` (`ID_vendeur`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `offres`
+--
+
+INSERT INTO `offres` (`ID`, `ID_acheteurs`, `ID_vendeur`, `ID_items`, `Round`, `Montant`, `Changement`, `Decision`) VALUES
+(1, 3, 7, 3, 0, 0, 0, 'Refuse'),
+(2, 1, 9, 4, 0, 0, 0, 'Refuse');
 
 -- --------------------------------------------------------
 
@@ -198,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
   `Pdp` varchar(255) NOT NULL,
   `Image` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `vendeur`
@@ -208,7 +234,7 @@ INSERT INTO `vendeur` (`ID`, `Nom`, `Prenom`, `Pseudo`, `Email`, `Pdp`, `Image`)
 (5, 'La', 'Fayette', 'pa', 'pa@ece.fr', '0', '0'),
 (6, 'Robert', 'Spierre', 'robo', 'robo@ece.fr', '0', '0'),
 (7, 'Yann', 'Houras', 'Yannis', 'yanou@gmail.com', 'C:wamp64wwwProjet_Piscine_Ing3image_commerce.png', 'C:wamp64wwwProjet_Piscine_Ing3image_fond_accueil.png'),
-(8, 'Yann', 'Houras', 'Yannis', 'yanou@gmail.com', 'C:wamp64wwwProjet_Piscine_Ing3image_commerce.png', 'C:wamp64wwwProjet_Piscine_Ing3image_fond_accueil.png');
+(9, 'Leblanc', 'Juste', 'Juste', 'leblanc@ece.fr', '', '');
 
 --
 -- Contraintes pour les tables déchargées
@@ -219,6 +245,13 @@ INSERT INTO `vendeur` (`ID`, `Nom`, `Prenom`, `Pseudo`, `Email`, `Pdp`, `Image`)
 --
 ALTER TABLE `achat_direct`
   ADD CONSTRAINT `achat_direct_ibfk_1` FOREIGN KEY (`ID_Items`) REFERENCES `items` (`ID`);
+
+--
+-- Contraintes pour la table `bid`
+--
+ALTER TABLE `bid`
+  ADD CONSTRAINT `bid_ibfk_1` FOREIGN KEY (`ID_encheres`) REFERENCES `encheres` (`ID`),
+  ADD CONSTRAINT `bid_ibfk_2` FOREIGN KEY (`ID_acheteurs`) REFERENCES `acheteurs` (`ID`);
 
 --
 -- Contraintes pour la table `encheres`
@@ -233,10 +266,19 @@ ALTER TABLE `items`
   ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`ID_Vendeur`) REFERENCES `vendeur` (`ID`);
 
 --
+-- Contraintes pour la table `offres`
+--
+ALTER TABLE `offres`
+  ADD CONSTRAINT `offres_ibfk_1` FOREIGN KEY (`ID_items`) REFERENCES `items` (`ID`),
+  ADD CONSTRAINT `offres_ibfk_2` FOREIGN KEY (`ID_acheteurs`) REFERENCES `acheteurs` (`ID`),
+  ADD CONSTRAINT `offres_ibfk_3` FOREIGN KEY (`ID_vendeur`) REFERENCES `vendeur` (`ID`);
+
+--
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_3` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteurs` (`ID`);
+  ADD CONSTRAINT `panier_ibfk_3` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteurs` (`ID`),
+  ADD CONSTRAINT `panier_ibfk_4` FOREIGN KEY (`ID_items`) REFERENCES `items` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
