@@ -36,7 +36,8 @@
 	if (!$conn) {
 		echo "Erreur de connexion a la bdd";
 	}
-	else{
+	else
+	{
 		if ($_POST['Valider']) 
 		{
 			/*-------------------------Si l'objet ne peut se vendre qu' en Enchere : -----------------------*/
@@ -78,7 +79,7 @@
 
 				$result=mysqli_query($conn,$sql);
 				if ($result) {
-						echo "Votre items a bien été crée dans la bdd items!";
+echo "Votre items a bien été crée dans la bdd items!";
 
 
 						/*----------------------Si l'objet ne peut se vendre qu'en Enchere : --------------------------*/
@@ -220,7 +221,8 @@
 
 						/*----------------Si l'objet ne peut se vendre qu'en Offres et en VenteDirect : -----------------*/
 
-						elseif ($prix_min == 0 && $prix_init != 0 && $prix_fixe != 0) {
+						elseif ($prix_min == 0 && $prix_init != 0 && $prix_fixe != 0) 
+						{
 
 								$sql2 = "SELECT * FROM items";
 								if ($nom_objet !="") 
@@ -253,14 +255,18 @@
 								$result4= mysqli_query($conn,$sql4);
 								echo "On a ajouté dans la bdd achat_direct l'item ";
 							}
+							header("Location: http://localhost/Projet_Piscine_Ing3/mesObjets.php");
 
 				}
+						
+				
 				else
-						echo "CHEH";
-			}
-
-
-
+				{
+					echo "CHEH";
+				}
 		}
+
+	}
+
 
 ?>

@@ -110,11 +110,19 @@
   <h1><center>Vendre</center></h1><br>
 
     <div style="float: left; width: 10%;">
-      
+      <?php
 
-  <img class="round" style="max-width:150px;padding: 15px" src="<?php echo $_SESSION['user_pdp']; ?>" alt="photo">
+        $database = "ece_ebay";
 
-      
+        $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
+
+        $sql= "SELECT * FROM vendeur";
+              $result=mysqli_query($conn,$sql);
+                $data = mysqli_fetch_assoc($result);
+                $image = $data['Image'];
+                            echo "<img class='left'  src='$image' height='120' width='100'>"
+
+      ?>
     </div>
       <div><hr class="new4" style="width: 100%;"></div>
 
@@ -203,7 +211,7 @@
 
 </div>
 
-          <input  type="submit" name="Valider">
+          <input  type="submit" name="Valider"> 
 
     </form>
   </div>
