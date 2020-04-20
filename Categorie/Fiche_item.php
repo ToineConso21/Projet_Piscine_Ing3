@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
         <ul class="nav navbar-nav">
-          <li class="active"><a href="Accueil.php">Accueil</a></li>
+          <li class="active"><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">Accueil</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="FerrailleTresors.php">Féraille ou Trésor</a></li>
