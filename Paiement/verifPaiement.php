@@ -108,7 +108,7 @@
                     $id_enchere = $data2['ID'];
 
                     echo $id_enchere;
-
+                    echo "<br><br>";
 
 
                     if ($type_achat=="VenteDirect") {
@@ -136,6 +136,7 @@
                       $sql9="DELETE FROM bid WHERE ID_encheres='".$id_enchere."' ";
                       $result9=mysqli_query($conn,$sql9);
                       echo $id_enchere;
+                      echo "<br>je suis ici";
                       if (!$result9) {
 
                         echo "erreur dans la suppression de l'article dans la table bid <br>";
@@ -145,25 +146,36 @@
                       $sql8="DELETE FROM encheres WHERE ID_items='".$id_item."' ";
                       $result8=mysqli_query($conn,$sql8);
                       echo $id_item;
+                      echo "<br>me voila<br>";
 
                       if (!$result8) {
                         echo "erreur dans la suppression de l'article dans la table encheres <br>";
                       }
-                      else{
-                        $sql10="DELETE FROM items WHERE ID='".$id_item."' ";
-                        $result10=mysqli_query($conn,$sql10);
+                        else{
+                        $sql28="DELETE FROM achat_direct WHERE ID_items='".$id_item."' ";
+                        $result28=mysqli_query($conn,$sql28);
                         echo $id_item;
-                        
-                        if ($result10) {
-                          header('Location: paiementAccepte.php');
+                        echo "<br>me revoilouvoila<br>";
+
+                        if (!$result28) {
+                          echo "erreur dans la suppression de l'article dans la table achat_direct <br>";
                         }
-                        if (!$result10) {
-                          echo "erreur dans la suppression de l'article dans la table items <br>";
+                        else{
+                          $sql10="DELETE FROM items WHERE ID='".$id_item."' ";
+                          $result10=mysqli_query($conn,$sql10);
+                          echo $id_item;
+                          echo "<br>encore moi<br>";
+
+                          if ($result10) {
+                            header('Location: paiementAccepte.php');
+                          }
+                          if (!$result10) {
+                            echo "erreur dans la suppression de l'article dans la table items <br>";
+                          }
                         }
                       }
-                    }
-                  }
-
+                    } 
+                   }
                   elseif ($type_achat=="Offre") {
                     $sql11="DELETE FROM offres WHERE ID_items='".$id_item."' ";
                     $result11=mysqli_query($conn,$sql11);
