@@ -42,7 +42,7 @@
 		{
 			/*-------------------------Si l'objet ne peut se vendre qu' en Enchere : -----------------------*/
 			if ($prix_min != 0 && $prix_init == 0  && $prix_fixe == 0) {
-					$type_vente1 = "Enchere";
+					$type_vente1 = "encheres";
 					$type_vente2 = "0";
 					$sql = " INSERT INTO items (Nom, Photo, Description, Video, Categorie, TypeVente1, TypeVente2, ID_Vendeur) VALUES ('$nom_objet', '$photo_objet', '$description_objet', '$video_objet', '$categorie_objet', '$type_vente1', '$type_vente2', '$id_vendeur')";
 
@@ -50,29 +50,29 @@
 			/*-------------------------Si l'objet ne peut se vendre qu' en Offres : -----------------------*/
 
 			elseif ($prix_min == 0 && $prix_init != 0 && $prix_fixe == 0 ) {
-					$type_vente1 = "Offres";
+					$type_vente1 = "offres";
 					$type_vente2 = "0";
 					$sql = " INSERT INTO items (Nom, Photo, Description, Video, Categorie, TypeVente1, TypeVente2, ID_Vendeur) VALUES ('$nom_objet', '$photo_objet', '$description_objet', '$video_objet', '$categorie_objet', '$type_vente1', '$type_vente2', '$id_vendeur')";
 				}	
 			/*-------------------------Si l'objet ne peut se vendre qu' en VenteDirect : -----------------------*/
 
 			elseif ($prix_min == 0 && $prix_init == 0 && $prix_fixe != 0) {
-					$type_vente1 = "VenteDirect";
+					$type_vente1 = "achat_direct";
 					$type_vente2 = "0";
 					$sql = " INSERT INTO items (Nom, Photo, Description, Video, Categorie, TypeVente1, TypeVente2, ID_Vendeur) VALUES ('$nom_objet', '$photo_objet', '$description_objet', '$video_objet', '$categorie_objet', '$type_vente1', '$type_vente2', '$id_vendeur')";
 				}
 			/*----------------Si l'objet ne peut se vendre qu'en Enchere et en VenteDirect : -----------------*/
 
 			elseif ($prix_min != 0 && $prix_init == 0 && $prix_fixe != 0) {
-					$type_vente1 = "Enchere";
-					$type_vente2 = "VenteDirect";
+					$type_vente1 = "encheres";
+					$type_vente2 = "achat_direct";
 					$sql = " INSERT INTO items (Nom, Photo, Description, Video, Categorie, TypeVente1, TypeVente2, ID_Vendeur) VALUES ('$nom_objet', '$photo_objet', '$description_objet', '$video_objet', '$categorie_objet', '$type_vente1', '$type_vente2', '$id_vendeur')";
 				}
 			/*----------------Si l'objet ne peut se vendre qu'en Offres et en VenteDirect : -----------------*/
 
 			elseif ($prix_min == 0 && $prix_init != 0 && $prix_fixe != 0) {
-					$type_vente1 = "Offres";
-					$type_vente2 = "VenteDirect";
+					$type_vente1 = "offres";
+					$type_vente2 = "achat_direct";
 					$sql = " INSERT INTO items (Nom, Photo, Description, Video, Categorie, TypeVente1, TypeVente2, ID_Vendeur) VALUES ('$nom_objet', '$photo_objet', '$description_objet', '$video_objet', '$categorie_objet', '$type_vente1', '$type_vente2', '$id_vendeur')";
 				}
 

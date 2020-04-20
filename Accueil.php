@@ -67,6 +67,15 @@
         } 
         ?>
 
+
+         <?php if ((isset($_SESSION['user_nom']) && $_SESSION['user_nom']=="Becker" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/utilisateur.php">Utilisateurs</a></li>
+        
+          <?php
+        }
+        ?>
+
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
           ?>
           <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteAcheteur.php">Mon Compte</a></li>

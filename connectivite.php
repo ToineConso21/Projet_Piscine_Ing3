@@ -16,21 +16,18 @@
 	}
 	else{
 		if ($statut=="Admin") {
-			$sql="SELECT Pseudo, Mdp FROM admin WHERE Pseudo = '".$login."' AND  Mdp = '".$mdp."'";
-
-			$result=mysqli_query($conn,$sql);
-
-				if (mysqli_num_rows($result)==0) {
-					echo "Identifiant ou Mot de passe incorrects";
-				}
-
-				else{
+			
+			if($login=="BillyBob" && $mdp=="Becker")
+				{
 					$_SESSION['user_id']=$login;
 					$_SESSION['user_type']=$statut;
 					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
 				}
+	
+					
+			
 		}
-
+		
 		if ($statut=="Vendeur") {
 			$sql="SELECT * FROM vendeur WHERE Pseudo = '".$login."' AND  Email = '".$mdp."'";
 
@@ -86,6 +83,8 @@
 						$_SESSION['user_nomCard']=$data['Nom_carte'];
 						$_SESSION['user_dateExp']=$data['date_exp'];
 						$_SESSION['user_cardCode']=$data['Code'];
+						$_SESSION['user_Solde']=$data['Solde'];
+
 						}
 
 					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");

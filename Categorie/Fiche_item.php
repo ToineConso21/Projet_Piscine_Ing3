@@ -145,7 +145,7 @@
              
 /*------------------------------------------------Affichage de l'interaction avec enchère------------------------------------*/
 
-                if($data['TypeVente1']=="Enchere")
+                if($data['TypeVente1']=="encheres")
                 {
                     $sql3="SELECT * FROM encheres WHERE ID_items ='".$ID."'";
                      $result3 = mysqli_query($conn,$sql3);
@@ -172,7 +172,7 @@
 /*------------------------------------------------Affichage de l'interaction avec Negociation------------------------------------*/
                  
 
-                 if($data['TypeVente1']=="Offres")
+                 if($data['TypeVente1']=="offres")
                 {
                       echo"<tr>";
                       echo"<td>Faire une Offre pour cette objet : </td>" ;
@@ -183,7 +183,7 @@
 
 /*------------------------------------------------Affichage de l'interaction avec Achat Direct------------------------------------*/
 
-                  if($data['TypeVente1']=="VenteDirect" || $data['TypeVente2']=="VenteDirect")
+                  if($data['TypeVente1']=="achat_direct" || $data['TypeVente2']=="achat_direct")
                 {
 
                      $sql4="SELECT * FROM achat_Direct WHERE ID_items ='".$ID."'";
@@ -210,11 +210,6 @@
           echo "</div>";
         echo "</div>";
         
-           
-
-
-
-
 }
 
 ?>

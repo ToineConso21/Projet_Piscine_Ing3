@@ -99,19 +99,7 @@
                     echo $type_achat;
 
 
-                    $sql56= " SELECT * FROM encheres WHERE ID_items= '".$id_item."' " ;
-
-                    $result56=mysqli_query($conn, $sql56);
-
-                    $data2 = mysqli_fetch_assoc($result56);
-
-                    $id_enchere = $data2['ID'];
-
-                    echo $id_enchere;
-                    echo "<br><br>";
-
-
-                    if ($type_achat=="VenteDirect") {
+                    if ($type_achat=="achat_direct") {
                       $sql6="DELETE FROM achat_direct WHERE ID_Items='".$id_item."' ";
                       $result6=mysqli_query($conn,$sql6);
 
@@ -132,7 +120,18 @@
                       }
                     }
 
-                  elseif ($type_achat=="Enchere") {
+                  elseif ($type_achat=="encheres") {
+                    $sql56= " SELECT * FROM encheres WHERE ID_items= '".$id_item."' " ;
+
+                    $result56=mysqli_query($conn, $sql56);
+
+                    $data2 = mysqli_fetch_assoc($result56);
+
+                    $id_enchere = $data2['ID'];
+
+                    echo $id_enchere;
+                    echo "<br><br>";
+
                       $sql9="DELETE FROM bid WHERE ID_encheres='".$id_enchere."' ";
                       $result9=mysqli_query($conn,$sql9);
                       echo $id_enchere;
@@ -176,7 +175,7 @@
                       }
                     } 
                    }
-                  elseif ($type_achat=="Offre") {
+                  elseif ($type_achat=="offres") {
                     $sql11="DELETE FROM offres WHERE ID_items='".$id_item."' ";
                     $result11=mysqli_query($conn,$sql11);
 

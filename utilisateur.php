@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="util.css">
+<link rel="stylesheet" type="text/css" href="../util.css">
 
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -48,9 +48,9 @@
         <li class="active"><a href="Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
-          <li><a href="Categorie/musee.php">Bon pour le musée</a></li>
-          <li><a href="Categorie/VIP.php">Acessoire VIP</a></li>
+          <li><a href="../Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
+          <li><a href="../Categorie/musee.php">Bon pour le musée</a></li>
+          <li><a href="../Categorie/VIP.php">Acessoire VIP</a></li>
         </ul>
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
@@ -63,8 +63,16 @@
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
           ?>
           <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
+        
           <?php
-        } 
+        }
+        ?>
+         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/Utilisateurs.php">Utilisateurs</a></li>
+        
+          <?php
+        }
         ?>
 
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
@@ -93,14 +101,67 @@
     </div>
   </div>
 </nav>
+<br>
+<br>
+<br>
 
-	<div align="text-center" style="height: 100%;">
-		<h1 style="color: green; padding-top: 400px;"><center>PAIEMENT ACCEPTE</center></h1>
-	</div>
 
-<div>
-    <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"> <button type='button' style='margin-top:20px; margin-left: 20px; width:200px; height:40px;'>Revenir à l'accueil</button> </a>
-</div>
+<div><h4><strong>Mes vendeurs</strong></h4> <br>
+        <hr class="new4">  
+    <br>
+    <br>
+
+<?php
+ 
+
+  
+  $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
+
+  if (!$conn) {
+    echo "Erreur de connexion a la bdd";
+  }
+  else {
+
+          $sql="SELECT * FROM vendeur"; 
+          $result=mysqli_query($conn,$sql);
+
+
+          if (mysqli_num_rows($result)==0) {
+            echo "Aucun objet dans cette catégorie";
+            }
+
+          else{
+
+
+             
+            echo "<table>";
+            while ($data= mysqli_fetch_assoc($result)) {   // Affichage de tous les objets sélectionnés 
+              echo"<tr>";
+              $image=$data['Pdp'];
+              echo"<td><img src='pdp/$image' class='img-thumbnail ' alt='Image' width='274' height='166' ></td>";
+              echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Nom']."</td>";
+              echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Prenom']."</td>";
+               echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Pseudo']."</td>";
+               echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Email']."</td>";
+
+               echo"<td>&nbsp;&nbsp;<form action='suppUtilisateur.php' method='post'>";
+                echo "<button type='submit' name='bouton' value='".$data['ID']."'>Supprimer</button>";
+                echo"</form></td>";
+                echo"</tr>";
+                   }
+              echo "</table>";
+             
+            }
+
+        }
+
+ 
+
+?>
+
+<br>
+<br>
+<br>
 
 <footer class="page-footer">
   <div class="container">

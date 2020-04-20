@@ -154,11 +154,11 @@
         <tr>
           <td>A quelle catégorie appartient-il ?</td>
           <td>
-            <input type="radio" name="categorie_objet" value="ferraille ou Tresor" required>
+            <input type="radio" name="categorie_objet" value="ferraille" required>
             <label>Ferraille ou tresor</label><br>
-            <input type="radio" name="categorie_objet" value="Bon pour le musee" required>
+            <input type="radio" name="categorie_objet" value="musee" required>
             <label>Bon pour le musee</label><br>
-            <input type="radio" name="categorie_objet" value="accessoire VIP" required>
+            <input type="radio" name="categorie_objet" value="VIP" required>
             <label>Accessoire VIP</label>
           </td>
         </tr>
@@ -180,6 +180,9 @@
               <td>Début des enchères :</td>
               <td><input type="date" name="debut_enchère" id="12" value="2020-07-01"></td>
             </tr>
+
+
+
             <tr>
               <td>Fin des enchères:</td>
               <td><input type="date" name="fin_enchere" id="13" value="2020-07-01"></td>
@@ -208,9 +211,7 @@
             </tr>
           </table>
   </div>
-
 </div>
-
           <input  type="submit" name="Valider"> 
 
     </form>

@@ -31,6 +31,8 @@
 
 	$conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
+	$solde= '10000';
+
 	if (!$conn) {
 		echo "Erreur de connexion a la bdd";
 	}
@@ -42,8 +44,8 @@
 				$date = new DateTime($date_exp);
 				$date_exp_final = $date->format('y/m/d');
 
-				$sql = " INSERT INTO acheteurs (Nom, Prenom, Email, Mdp, Adresse1, Adresse2, Ville, Code_Postal, Pays, Tel, Type_paiement, Num_carte, Nom_carte, Date_exp, Code) 
-VALUES ('$nom_acheteur', '$prenom_acheteur', '$email_acheteur', '$mdp', '$adresse1', '$adresse2', '$ville', '$code_postal', '$pays', '$tel', '$type_de_carte', '$num_carte', '$nom_titulaire', '$date_exp_final', '$num_secu')";
+				$sql = " INSERT INTO acheteurs (Nom, Prenom, Email, Mdp, Adresse1, Adresse2, Ville, Code_Postal, Pays, Tel, Type_paiement, Num_carte, Nom_carte, Date_exp, Code, Solde) 
+VALUES ('$nom_acheteur', '$prenom_acheteur', '$email_acheteur', '$mdp', '$adresse1', '$adresse2', '$ville', '$code_postal', '$pays', '$tel', '$type_de_carte', '$num_carte', '$nom_titulaire', '$date_exp_final', '$num_secu', '$solde')";
 
 				$result=mysqli_query($conn,$sql);
 				if ($result==1) {

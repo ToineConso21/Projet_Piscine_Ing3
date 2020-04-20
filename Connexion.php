@@ -121,10 +121,6 @@
 					</tr>
 
 					<tr>
-						<td style="padding: 5px"><input type="radio" name="statut" value="Admin" required> Admin </td>
-					</tr>
-
-					<tr>
 						<td style="padding: 5px"><input type="radio" name="statut" value="Vendeur" required> Vendeur </td>
 					</tr>
 					<tr>

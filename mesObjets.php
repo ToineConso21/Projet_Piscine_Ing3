@@ -149,7 +149,7 @@
 
             $tmp = $data['ID'];
 
-            if ($data['TypeVente1'] == 'Enchere' ) 
+            if ($data['TypeVente1'] == 'encheres' ) 
             {
                 $sql2 = "SELECT * FROM encheres WHERE ID_Items LIKE  '$tmp' ";
 
@@ -172,7 +172,7 @@
                       </div>";
             }
 
-            if ($data['TypeVente1'] == 'VenteDirect' ) 
+            if ($data['TypeVente1'] == 'achat_direct' ) 
             {
           
               echo "<div>
@@ -184,7 +184,7 @@
                         </div>
                       </div>";
             }
-            if ($data['TypeVente1'] == 'Offres' ) 
+            if ($data['TypeVente1'] == 'offres' ) 
             {
                 $sql2 = "SELECT * FROM offres WHERE ID_items =   '".$tmp."' ";
 
@@ -251,7 +251,7 @@
 
             }
 
-            if ($data['TypeVente2'] == 'VenteDirect' ) 
+            if ($data['TypeVente2'] == 'achat_direct' ) 
             {
               echo "<br><br><h2>" . $data['TypeVente2'] . "</h2>";
 
