@@ -67,15 +67,6 @@
         } 
         ?>
 
-
-         <?php if ((isset($_SESSION['user_nom']) && $_SESSION['user_nom']=="Becker" )) {
-          ?>
-          <li><a href="http://localhost/Projet_Piscine_Ing3/utilisateur.php">Utilisateurs</a></li>
-        
-          <?php
-        }
-        ?>
-
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
           ?>
           <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteAcheteur.php">Mon Compte</a></li>
@@ -85,14 +76,6 @@
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
-      <?php if(isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur" ) {
-          ?>
-            <li><a href="comptes/monPanier.php" title="Acceder aux items enregistrés"><img src="http://localhost/Projet_Piscine_Ing3/imgs/supermarket.png"></a></li>
-          <?php
-        } 
-        ?>
-        
         <?php if(!isset($_SESSION['user_type'])) {
           ?>
             <li><a href="comptesCrea/signUp_Acheteur.php"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
@@ -193,12 +176,12 @@
       <div class="col-lg-8 col-md-8 col-sm-12">
         <h6 class="text-uppercase font-weight-bold">Information additionnelle</h6>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
-        Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
-        </p>
+        Rejoingnez nous sur les réseaux sociaux ! .
+        </p><br>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
-        Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
+        Instagram : AntoineConso ; Bautista_le_sang ; AdrienZychowski.</p>
+        <p>Facebook : AntoineConso ; Bautista_le_sang ; AdrienZychowski.</p>
+        <P>Twitter : AntoineConso ; Bautista_le_sang ; AdrienZychowski.
         </p>
         </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
