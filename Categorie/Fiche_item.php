@@ -162,10 +162,13 @@
                       echo"<td>Date de fin de l'enchère :".$data3['Date_fin']."</td>";
                        echo"</tr>";
                       echo"<tr>";
+                      $_SESSION['id_item']=$ID;
+                      echo "<form action='../fonctionsPaiement/actionsClient.php' method='post'> ";
                         echo"<td>Faire une Enchère :</td>";
-                         echo"</tr>";
-                        echo"<tr>";
-                        echo"<td><input type='text' name='enchere'> &nbsp;&nbsp<button  name='bouton' value='5' class='btn btn-primary'>Encherir</button></td>";
+                          echo"</tr>";
+                          echo"<tr>";
+                          echo"<td><input type='text' name='montant'> &nbsp;&nbsp <button type='submit' name='type_achat' value='Enchere' class='btn btn-primary'>Encherir</button></td>";
+                        echo "</form>";
                          echo"</tr>";
                         
                       }
@@ -179,7 +182,8 @@
                       echo"<tr>";
                       echo"<td>Faire une Offre pour cette objet : </td>" ;
                      
-                     echo "<td><form action='../negociation.php' method='post'>
+                     echo "<td>
+                     <form action='../negociation.php' method='post'>
                  <input type='number' name='offre_acheteur'> <td>";
                        echo "<td>
 

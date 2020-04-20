@@ -30,8 +30,7 @@
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1>EBAY ECE</h1>
-    </div>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>    </div>
   </div>
 </div>
 
@@ -84,9 +83,17 @@
           <?php
         } 
         ?>
+
         <?php if (isset($_SESSION['user_id'])) {
           ?>
-          <li><a href="sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+          <li><a href="../comptes/monPanier.php" title="panier"><img src="../imgs/supermarket.png" style="size: relative;"></a></li>
+        <?php
+          }
+        ?>
+
+        <?php if (isset($_SESSION['user_id'])) {
+          ?>
+          <li><a href="../sessMgmt/logout.php" title="Logout"><img src="../imgs/logout.png" style="size: relative;"></a></li>
         <?php
           }
         ?>
@@ -121,7 +128,6 @@
 
 
           if (mysqli_num_rows($result)==0) {
-            echo "Aucun objet dans cette catégorie";
             }
 
           else{

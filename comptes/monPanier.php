@@ -31,8 +31,7 @@
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Ebay ECE</h1>      
-  </div>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>  </div>
 </div>
 
 <nav class="navbar navbar-inverse">
@@ -46,7 +45,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Accueil.php">Accueil</a></li>
+        <li class="active"><a href="../Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="../Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
@@ -56,7 +55,7 @@
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/mesObjets.php">Vendre</a></li>
           <?php
         } 
         ?>
@@ -130,7 +129,6 @@
     
     if ($compteur == 0) 
     {
-      echo "Pas trouve de items. <br>";
     } 
     else 
     {
@@ -139,12 +137,11 @@
 
 
         while ($data = mysqli_fetch_assoc($result)) {
-
           echo "<div style='border-style: double; display: flex; flex-direction: row; margin-bottom: 50px; margin-left: 60px; margin-right: 60px; width=auto; '> ";
             $id_item=$data['ID_items'];
             echo "    <div style=' padding-left: 20px; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; '>";
-            $image = '../imgs/$data["Photo"]';
-            echo "<td>" . "<img src='$image' height='274' width='260'>" . "</td>";
+            $image = $data['Photo'];
+            echo "<td>" . "<img src='../imgs/$image ' height='274' width='260'>" . "</td>";
             echo "</div>";
             echo "<div style='width: 400px; margin-right: 10px; background-color: #A47D74'>";
             echo "<h1 style='padding:30px;'>" . $data['Nom'] . "</h1><br>";
@@ -160,10 +157,10 @@
 
             $tmp = $data['ID'];
 
-            if ($data['TypeVente1'] == 'Enchere' ) 
+            if ($data['TypeVente1'] == 'encheres' ) 
             {
                 $type_achat="encheres";
-                $conn=mysqli_connect('localhost','root','','ece_ebay');
+                $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
                 if (!$conn) {
                   echo "Erreur de connexion à la bdd";
@@ -193,6 +190,7 @@
                           
                           <form action='../Paiement/commandeP1.php' method='post'>
                             <input type='hidden' value='encheres' name='type_achat'>
+
                            <button type='submit' name='Acheter_btn' class='btn btn-primary' value='".$id_item."' >Acheter  </button> 
                            </form>;
                         </div>
@@ -303,7 +301,7 @@
                           </tr>
                         </table>";
 
-              /*    echo "<form action='../fonctionsPaiement/actionsClient.php' method='post'>;
+                  echo "<form action='../fonctionsPaiement/actionsClient.php' method='post'>;
                           <table>
                             </tr>
                               <td><p>Nouvelle Offre : </p></td>
@@ -311,7 +309,7 @@
                                 <td><button type='submit' name='type_achat' value='Offre'>Envoyez la contre-offre</button></td>
                             </tr>
                           </table>
-                        </form>";*/
+                        </form>";
                 }
                   
 

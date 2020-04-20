@@ -23,8 +23,7 @@ session_start();
 	<div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1>EBAY ECE</h1>
-    </div>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>    </div>
   </div>
 </div>
 
@@ -96,7 +95,7 @@ session_start();
 
 
   $id_item = isset($_POST["Acheter_btn"])? $_POST["Acheter_btn"] : "";
-
+  $type_achat=isset($_POST["type_achat"])? $_POST["type_achat"] : "";
 
   $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
@@ -170,7 +169,8 @@ session_start();
                 </form>
               </td>
               <td align='center'>";
-                echo "<td><form action='commandeP2.php' method='post'>
+               echo "<td><form action='commandeP2.php' method='post'>
+                  <input type='hidden' name='type_achat' value= '".$type_achat."'>
                  <button type='Submit' name='Confirmer_btn' class='regular' value='".$id_item."' >Confirmer </button> </form><td>";
               echo "</td>
             </tr>

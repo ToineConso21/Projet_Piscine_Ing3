@@ -38,8 +38,7 @@
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1>EBAY ECE</h1>
-    </div>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>    </div>
   </div>
 </div>
 

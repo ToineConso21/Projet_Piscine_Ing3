@@ -15,19 +15,7 @@
 		echo "Erreur de connexion a la bdd";
 	}
 	else{
-		if ($statut=="Admin") {
-			
-			if($login=="BillyBob" && $mdp=="Becker")
-				{
-					$_SESSION['user_id']=$login;
-					$_SESSION['user_type']=$statut;
-					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
-				}
-	
-					
-			
-		}
-		
+
 		if ($statut=="Vendeur") {
 			$sql="SELECT * FROM vendeur WHERE Pseudo = '".$login."' AND  Email = '".$mdp."'";
 
@@ -91,5 +79,7 @@
 					
 				}
 		}
+					header("Location: http://localhost/Projet_Piscine_Ing3/Accueil.php");
+
 	}
 ?>

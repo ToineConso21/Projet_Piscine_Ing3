@@ -22,8 +22,7 @@
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Ebay ECE</h1>      
-    <p>Mission, Vission & Values</p>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>
   </div>
 </div>
 

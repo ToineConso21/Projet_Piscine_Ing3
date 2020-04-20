@@ -20,6 +20,30 @@
  $(document).ready(function(){
  $('.header').height($(window).height());
  });
+ 
+
+$(document).ready(function(){
+      $("#show1").click(function(){
+      $("#image1").show();
+    });
+ });
+
+ $(document).ready(function(){
+       $("#show2").click(function(){
+        $("#image2").show();
+    });
+ });
+$(document).ready(function(){
+       $("#show3").click(function(){
+        $("#image3").show();
+    });
+ });
+$(document).ready(function(){
+       $("#show4").click(function(){
+        $("#image4").show();
+    });
+ });
+
 </script>
 
 
@@ -29,7 +53,7 @@
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1>EBAY ECE</h1>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>
     </div>
   </div>
 </div>
@@ -63,8 +87,9 @@
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )) {
           ?>
           <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
+        
           <?php
-        } 
+        }
         ?>
 
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
@@ -74,8 +99,17 @@
         } 
         ?>
         
+        <?php if ((isset($_SESSION['user_nom']) && $_SESSION['user_nom']== 'BillyBob' )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/utilisateur.php">Utilisateur</a></li>
+        
+          <?php
+        }
+        ?>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
+
         <?php if(!isset($_SESSION['user_type'])) {
           ?>
             <li><a href="comptesCrea/signUp_Acheteur.php"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
@@ -83,6 +117,15 @@
           <?php
         } 
         ?>
+
+        <?php if (isset($_SESSION['user_id'])) {
+          ?>
+          <li><a href="comptes/monPanier.php" title="panier"><img src="imgs/supermarket.png" style="size: relative;"></a></li>
+        <?php
+          }
+        ?>
+
+
         <?php if (isset($_SESSION['user_id'])) {
           ?>
           <li><a href="sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
@@ -97,45 +140,57 @@
 <header class="page-header header container-fluid">
 <div class="overlay"></div>
   <div class="description">
-  <h1>Bienvenue sur ECE_Bay!</h1>
+    <?php if(!isset($_SESSION['user_type'] )){
+    ?>
+  <h1>Bienvenue sur WestBay!</h1>
       <p>
-       Nous avons fait le maximum pour vous faciliter la prise en main de ce site et rendre votre expérience plus plaisante !
+       Ici tous les Cow-Boys et toutes les Cow-Girl trouvent ce dont ils ont besoin en se créant un compte Acheteur!<br>
+       Si vous avez un outils dont vous ne vous servez plus à la ferme ou que vous avez besoin d'argent pour un nouveau fusil, créez un compte vendeur en moins de 5 minutes! 
       </p>
       </div>
 
   <div class="description2">
       <p>
-        Vous avez en bas de cette page les items ajouté récemment par nos vendeurs. Allez jeter un coup d'oeil et passez un agreable moment sur notre site !  
+         N'hésitez plus et rejoignez WestBay!<br>
+         Numéro 1 dans tout le Far-West.
       </p>
     </div>
+  <?php 
+}   else{
+  ?>
+  <div class="description">
+   <h1>Vous êtes Connectés!</h1>
+ </div>
+<?php
+}?>
 </header>
 
 
-
+<h1><center>Les Derniers ajouts du site</center></h1>
 <div class="container features" >
     <div class="row">
       <div class="col-sm-3">
             <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
+              <a href="fjords.jpg"><img src="imgs/Sac.jpg" class="img-thumbnail"  alt="Image" width="174" height="166" ></a>
             </div>
         </div>
       <div class="col-sm-3">
               <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
+                <div class="panel-heading"> Sac en Cuir</div>
+                <div class="panel-body"> Un très beau sac de belle qualitée, </div>
+                <div class="panel-footer">Billy the Kid</div>
               </div>
             </div>
       <div class="col-sm-3">
             <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
+              <a href="fjords.jpg"><img src="imgs/besace.jpg" class="img-thumbnail"  alt="Image" width="174" height="166" ></a>
             </div>
         </div>
       <div class="col-sm-3">
               <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
+                <div class="panel-heading">Besace </div>
+                <div class="panel-body"> Besace très solide en cuir de beuf faites par  </div>
+                <div class="panel-footer">Un Truand</div>
               </div>
             </div>
           </div>
@@ -145,30 +200,94 @@
     <div class="row">
       <div class="col-sm-3">
             <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
+              <a href="fjords.jpg"><img src="imgs/montre.jpg" class="img-thumbnail" alt="Image" width="174" height="166" ></a>
             </div>
         </div>
       <div class="col-sm-3">
               <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
+                <div class="panel-heading">montre</div>
+                <div class="panel-body"> magnifique montre</div>
+                <div class="panel-footer"> Un Bon</div>
               </div>
             </div>
       <div class="col-sm-3">
             <div class="container">
-              <a href="fjords.jpg"><img src="https://placehold.it/150x80?text=IMAGE" class="img-thumbnail" " alt="Image" width="274" height="166" ></a>
+              <a href="fjords.jpg"><img src="imgs/meuble.jpg" class="img-thumbnail" alt="Image" width="174" height="166" ></a>
             </div>
         </div>
       <div class="col-sm-3">
               <div class="panel panel-danger">
-                <div class="panel-heading">NOM OBJET</div>
-                <div class="panel-body"> DESCRIPTION ET BOUTON YYEYEYEYEYYEYEEYEYEEEYEY</div>
-                <div class="panel-footer">PRIX ET VENDEUR</div>
+                <div class="panel-heading">Meuble</div>
+                <div class="panel-body">Un meuble qui a survecu à de nombreuses escarmouhe entre bandit</div>
+                <div class="panel-footer">Une brutte </div>
               </div>
             </div>
           </div>
         </div>
+<br>
+<br>
+<br>
+<hr class="new4">
+<br>
+<br>
+ <?php if(isset($_SESSION['user_type'])== "Acheteur"){
+    ?>
+    <div id='titreJeu'>
+    <h1>GRAND JEUX DU MOIS</h1><br>
+    <p>Les règles sont simples : Trouver le truand qui s'est caché dans cette page!</p><br>
+    <p>Cliquez sur les boutons :  "CHERCHER"</p>
+  </div>
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 ">
+       <center> <button type ="submit" id="show1" class="btn btn-danger">CHERCHER</button></center><br>
+        <div id="image1" class="image">
+        <img src = "imgs/saloon.jpg" width="174" height="166">
+      </div>
+    </div>
+
+      <div class="col-sm-3 ">
+      <center>  <button type ="submit" id="show2" class="btn btn-danger">CHERCHER</button></center><br>
+        <div id="image2" class="image">
+        <img src = "imgs/eglise.jpg" width="174" height="166">
+      </div>
+    </div>
+    <div class="col-sm-3 " >
+       <center> <button type ="submit" id="show3" class="btn btn-danger">CHERCHER</button></center><br>
+        <div id="image3" class="image">
+        <img src = "imgs/cactus.jpg" width="174" height="166">
+      </div>
+    </div>
+    <div class="col-sm-3 " >
+       <center> <button type ="submit" id="show4" class="btn btn-danger">CHERCHER</button></center><br>
+        <div id="image4" class="image">
+
+        <img src = "imgs/bandit.jpg" width="174" height="166">
+        <p>Bravo vous l'avez trouvé!</p><br>
+        <p>Vous gagnez une prime de 50 euros : </p><br>
+        <form action ="Accueil.php" method="post">
+        <button type="submit" name="gagnant" value="1" class="btn btn-warning">Recupérer</button>
+      </form>
+      </div>
+    </div>
+   
+    
+    </div>
+  </div>
+  
+
+    
+<?php
+
+}
+
+?>
+
+
+
 <br>
 <footer class="page-footer">
   <div class="container">
@@ -176,12 +295,12 @@
       <div class="col-lg-8 col-md-8 col-sm-12">
         <h6 class="text-uppercase font-weight-bold">Information additionnelle</h6>
         <p>
-        Rejoingnez nous sur les réseaux sociaux ! .
-        </p><br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
+        Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
+        </p>
         <p>
-        Instagram : AntoineConso ; Bautista_le_sang ; AdrienZychowski.</p>
-        <p>Facebook : AntoineConso ; Bautista_le_sang ; AdrienZychowski.</p>
-        <P>Twitter : AntoineConso ; Bautista_le_sang ; AdrienZychowski.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
+        Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
         </p>
         </div>
       <div class="col-lg-4 col-md-4 col-sm-12">

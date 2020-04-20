@@ -30,8 +30,7 @@
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1>EBAY ECE</h1>
-    </div>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>    </div>
   </div>
 </div>
 
@@ -83,10 +82,19 @@
             <li><a href="Connexion.php">Connexion</a></li>
           <?php
         } 
+
         ?>
+
         <?php if (isset($_SESSION['user_id'])) {
           ?>
-          <li><a href="sessMgmt/logout.php" title="Logout"><img src="imgs/logout.png" style="size: relative;"></a></li>
+          <li><a href="../comptes/monPanier.php" title="panier"><img src="../imgs/supermarket.png" style="size: relative;"></a></li>
+        <?php
+          }
+        ?>
+
+        <?php if (isset($_SESSION['user_id'])) {
+          ?>
+          <li><a href="../sessMgmt/logout.php" title="Logout"><img src="../imgs/logout.png" style="size: relative;"></a></li>
         <?php
           }
         ?>
@@ -121,7 +129,6 @@
 
 
           if (mysqli_num_rows($result)==0) {
-            echo "Aucun objet dans cette catégorie";
             }
 
           else{
@@ -147,9 +154,11 @@
                   echo "ID de l'objet : ".$data['ID']."<br>";
                 echo "<button type='submit' name='bouton' value='".$data['ID']."' >Voir</button>";
                 echo "</form>";
+                 if(isset($_SESSION['user_type']) && $_SESSION['user_type']=='Vendeur' ){
                 echo "<form action='../comptes/panier.php' method='post'>
                   <button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>
-                </form>";
+                </form>"; 
+              }
                 echo"</div>" ;
                 $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
                 $result2 = mysqli_query($conn,$sql2);

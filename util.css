@@ -15,8 +15,9 @@
     }
     /* Remove the jumbotron's default bottom margin */ 
 .jumbotron {
-    background-image: url('imgs/image_fond_accueil.png');
-    background-image: url('http://localhost/Projet_Piscine_Ing3/imgs/image_fond_accueil.png');
+   
+    background-image: url('http://localhost/Projet_Piscine_Ing3/imgs/farwest.jpg');
+  	
     background-size: cover;
     background-position: center;
     position: relative;
@@ -24,12 +25,14 @@
     }
 
 .header {
-	background-image: url('imgs/image_commerce.png');
-	background-image: url('http://localhost/Projet_Piscine_Ing3/imgs/image_commerce.png');
+	
+	background-image: url('http://localhost/Projet_Piscine_Ing3/imgs/Wantyou.jpg');
+	
 	background-size: cover;
 	background-position: center;
 	position: relative;
 }
+
 .overlay {
 	position: absolute;
 	min-height: 100%;
@@ -46,6 +49,9 @@
 	text-align: center;
 }
 
+
+
+
 .description2 {
 	left: 50%;
 	position: absolute;
@@ -54,16 +60,20 @@
 	text-align: center;
 }
 .description2 p {
-	color: black;
+	color: #FFD700;
+	font :bold;
 	font-size: 2.5rem;
 	line-height: 1.5;
 }
 .description h1 {
-	color: #6ab446;
+	color: red;
+	font-weight: bold;
+
 }
 .description p {
-	color: #fff;
-	font-size: 2.5rem;
+	color: #FFD700;
+	 border: 1px solid #FFD700;
+	font-size: 2rem;
 	line-height: 1.5;
 }
 
@@ -88,7 +98,7 @@ body {
     height: 100%;
     padding: 0px;
     margin: 0px;
-    background: #f2f6e9;
+    background: #FFFFCC;
 }
 
 
@@ -97,6 +107,7 @@ hr.new4 {
 	  border: 1px solid black;
 	  width: 50%;
 	}
+
 
 .vl {
   border-left: 6px black;
@@ -120,6 +131,30 @@ img.round{
 
 .new-bg{
     background-image:url();
+}
+
+#titreJeu{
+	text-align: center;
+	
+
+}
+#titreJeu p{
+	color : red;
+	font-size: 2rem;
+	line-height: 1.5;
+
+}
+
+}
+#titreJeu h1{
+	color : red;
+	
+}
+
+
+.image{
+	display:none;
+	text-align: center;
 }
 /*--------------------------------------------------------------------------------------------------*/
 
@@ -208,4 +243,3 @@ h4{
  	border-style:dotted;
  	border-color:black;
 }
-

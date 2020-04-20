@@ -45,8 +45,7 @@
 	<div class="jumbotron">
   <div class="container-fluid">
     <div class="container text-center">
-      <h1><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">EBAY ECE</a></h1>
-    </div>
+      <a href="http://localhost/Projet_Piscine_Ing3/Accueil.php"><img src="http://localhost/Projet_Piscine_Ing3/imgs/Logo.jpg" class="img-thumbnail" style="width:261px; height:100px; "></a>    </div>
   </div>
 </div>
 
@@ -64,19 +63,18 @@
         <li class="active"><a href="http://localhost/Projet_Piscine_Ing3/Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Féraille ou Trésor</a></li>
-          <li><a href="#">Bon pour le musée</a></li>
-          <li><a href="#">Acessoire VIP</a></li>
+          <li><a href="../Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
+          <li><a href="../Categorie/musee.php">Bon pour le musée</a></li>
+          <li><a href="../Categorie/VIP.php">Acessoire VIP</a></li>
         </ul>
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/mesObjets.php">Vendre</a></li>
           <?php
         } 
         ?>
         
-        <li><a href="#">Contact</a></li>
         <?php if (isset($_SESSION['user_login'])) {
           ?>
           <li><a href="#">Mon Compte</a></li>

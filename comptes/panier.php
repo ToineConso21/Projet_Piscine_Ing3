@@ -7,7 +7,6 @@
 <?php
 	
 	$id_item= isset($_POST['bouton'])? $_POST['bouton'] : "";
-	echo $id_item;
 
 	$conn=mysqli_connect('localhost:3308','root','','ece_ebay');
 
@@ -34,6 +33,7 @@
 		}
 		else
 			echo "Cet item est déjà dans votre panier";
+			header('Location: monPanier.php');
 	}
 ?>
 
