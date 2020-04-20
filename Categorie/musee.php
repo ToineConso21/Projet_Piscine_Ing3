@@ -146,7 +146,7 @@
               echo "<div class='col-sm-3'>";
               echo "<div class='container'>";  
               $image = $data['Photo'];
-              echo "<img src='../imgs/$image' class='img-thumbnail ' alt='Image' width='274' height='166' >";
+              echo "<img src='../imgs/$image' class='img-thumbnail ' alt='Image' width='224' height='116' >";
               echo"</div>";
               echo"</div>";
                echo"<div class='col-sm-3'>";

@@ -56,7 +56,7 @@
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/mesObjets.php">Vendre</a></li>
           <?php
         } 
         ?>
@@ -155,8 +155,8 @@
                   echo $data['TypeVente2']."<br>";
                   if($_SESSION['user_type'] == "Admin")
                   {
-                     echo"<form action='' method='post'>";
-                    echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Supprimer</button><br>";
+                     echo"<form action='../mesObjetsAction.php' method='post'>";
+                    echo "<button type='submit' name='Supprimer_btn' value='".$data['ID']."'class='btn btn-primary'>Supprimer</button><br>";
                       echo "</form>";
                   }
                   else{ 

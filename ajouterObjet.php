@@ -114,7 +114,7 @@
 
         $database = "ece_ebay";
 
-        $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
+        $conn=mysqli_connect('localhost','root','','ece_ebay');
 
         $sql= "SELECT * FROM vendeur";
               $result=mysqli_query($conn,$sql);

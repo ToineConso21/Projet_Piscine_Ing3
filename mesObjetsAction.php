@@ -11,7 +11,7 @@
 
 	$database = "ece_ebay";
 
-	$conn=mysqli_connect('localhost:3308','root','','ece_ebay');
+	$conn=mysqli_connect('localhost','root','','ece_ebay');
 				echo $id_button;
 
 	if (!$conn) {

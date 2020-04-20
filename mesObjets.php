@@ -57,7 +57,7 @@
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/mesObjets.php">Vendre</a></li>
           <?php
         } 
         ?>
@@ -67,6 +67,13 @@
           <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/compteVendeur.php">Mon Compte</a></li>
           <?php
         } 
+        ?>
+         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
+          ?>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/comptes/Utilisateurs.php">Utilisateurs</a></li>
+        
+          <?php
+        }
         ?>
 
         <?php if ((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Acheteur" )) {
@@ -104,10 +111,10 @@
 <?php
 
   $id_vendeur=$_SESSION['user_id'];
-  $database = "ece_ebay";
+  
   $id_items_tampon = '0';
 
-  $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
+  $conn=mysqli_connect('localhost','root','','ece_ebay');
 
   if (!$conn) 
   {

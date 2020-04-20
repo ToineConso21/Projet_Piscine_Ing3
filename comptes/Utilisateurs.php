@@ -48,14 +48,14 @@
         <li class="active"><a href="../Accueil.php">Accueil</a></li>
   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
-          <li><a href="Categorie/musee.php">Bon pour le musée</a></li>
-          <li><a href="Categorie/VIP.php">Acessoire VIP</a></li>
+          <li><a href="../Categorie/FerrailleTresors.php">Féraille ou Trésor</a></li>
+          <li><a href="../Categorie/musee.php">Bon pour le musée</a></li>
+          <li><a href="../Categorie/VIP.php">Acessoire VIP</a></li>
         </ul>
       </li>
         <?php if((isset($_SESSION['user_type']) && $_SESSION['user_type']=="Vendeur" )|| (isset($_SESSION['user_type']) && $_SESSION['user_type']=="Admin" )) {
           ?>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="http://localhost/Projet_Piscine_Ing3/mesObjets.php">Vendre</a></li>
           <?php
         } 
         ?>
@@ -133,10 +133,10 @@
           else{
 
 
-                 
+             
             echo "<table>";
             while ($data= mysqli_fetch_assoc($result)) {   // Affichage de tous les objets sélectionnés 
-             
+              echo$data['ID'];   
               echo"<tr>";
               $image=$data['Pdp'];
               echo"<td><img src='../pdp/$image' class='img-thumbnail ' alt='Image' width='274' height='166' ></td>";
@@ -145,8 +145,8 @@
                echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Pseudo']."</td>";
                echo"<td>&nbsp;&nbsp;&nbsp;&nbsp;".$data['Email']."</td>";
 
-               echo"<td>&nbsp;&nbsp;<form action='' method=''>";
-                echo "<button type='submit' name='Supprime_btn' value='".$data['ID']."'>Supprimer</button>";
+               echo"<td>&nbsp;&nbsp;<form action='suppUtilisateur.php' method='post'>";
+                echo "<button type='submit' name='bouton' value='".$data['ID']."'>Supprimer</button>";
                 echo"</form></td>";
                 echo"</tr>";
                    }
