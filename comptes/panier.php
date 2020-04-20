@@ -6,7 +6,8 @@
 
 <?php
 	
-	$id_item= isset($_POST["item"])? $_POST["item"] : "";
+	$id_item= isset($_POST['bouton'])? $_POST['bouton'] : "";
+	echo $id_item;
 
 	$conn=mysqli_connect('localhost','root','','ece_ebay');
 
@@ -14,20 +15,21 @@
 		echo "Erreur de connexion à la bdd";
 	}
 	else{
-		$sql="SELECT * FROM panier WHERE ID_acheteur='".$_SESSION['user_id']."' ";
+		$sql="SELECT * FROM panier WHERE ID_acheteur='".$_SESSION['user_id']."' AND ID_items='".$id_item."' ";
 		$result=mysqli_query($conn,$sql);
 
 		if (mysqli_num_rows($result)==0) {
-			$sql="INSERT INTO panier VALUES('$_SESSION['user_id']','$id_item') ";
+			$sql= " INSERT INTO panier VALUES('".$_SESSION['user_id']."', '".$id_item."') ";
 			$result=mysqli_query($conn,$sql);
 
-			if (mysqli_num_rows($result)==0) {
+			if (!$result) {
 				//METTRE DU JAVASCRIPT POUR AFFICHER UN ALERT
 				echo "Nous n'avons pas pu ajouter cet item à votre panier, veuillez réessayer";
 			}
 			else{
 				//METTRE DU JAVASCRIPT
 				echo "Item ajouté à votre panier !";
+				header('Location: monPanier.php');
 			}
 		}
 		else
@@ -35,7 +37,8 @@
 	}
 ?>
 
-<?php 
+<!--------------------------AFFICHER DANS LE PANIER QUE L'ENCHERE EST REMPORTEE------------------------------
+<?php /*
 	$conn=mysqli_connect('localhost','root','','ece_ebay');
 
 	if (!$conn) {
@@ -59,5 +62,6 @@
 			}
 
 		}
-	}
+	}*/
 ?>
+-->
