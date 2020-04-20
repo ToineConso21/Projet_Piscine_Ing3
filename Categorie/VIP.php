@@ -147,7 +147,10 @@
                   echo "ID de l'objet : ".$data['ID']."<br>";
                 echo "<button type='submit' name='bouton' value='".$data['ID']."' >Voir</button>";
                 echo "</form>";
-                echo "<button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>";
+                echo "
+                <form action='../comptes/panier.php' method='post'>
+                <button type='submit' name='bouton' value='".$data['ID']."'class='btn btn-primary'>Ajouter au panier</button><br>
+                </form>";
                 echo"</div>" ;
                 $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
                 $result2 = mysqli_query($conn,$sql2);

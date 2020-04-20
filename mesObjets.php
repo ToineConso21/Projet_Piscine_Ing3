@@ -234,7 +234,11 @@
                 echo "<table>
                         </tr>
                           <td>Derniere offre de " . $nom_acheteur . " : <strong>" . $montant . " euros  </strong></td>
-                          <td><button type='button' name='accept_offre'>Accepter l'offre</button></td>
+                 <td><form action='negociation.php' method='post'>
+
+                        <input type='hidden' value='$id_vendeur' name='id_du_vendeur'/>
+
+                        <button type='submit' name='Yes_offre_btn' class='btn btn-primary' >Accepter l'offre </button> </form><td> 
                         </tr>
                       </table>";
 

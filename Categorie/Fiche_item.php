@@ -132,11 +132,13 @@
                 echo"<td>".$data['Description']."</td>";
                echo"</tr>";
 
-            $sql2= "SELECT Pseudo FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
+            $sql2= "SELECT * FROM vendeur Where ID ='".$data['ID_Vendeur']."'";
             $result2 = mysqli_query($conn,$sql2);
              if (mysqli_num_rows($result2)==0) { echo "Erreur sql2";};
 
             $data2 = mysqli_fetch_assoc($result2);
+
+            $id_vendeur = $data2['ID'];
             echo"<tr>";
               echo"<td>Vendeur : ".$data2['Pseudo']."</td>";
             echo "</tr>"; 
@@ -169,7 +171,7 @@
                       }
 
 
-/*------------------------------------------------Affichage de l'interaction avec Negociation------------------------------------*/
+/*------------------------------------------------Affichage de l'interaction avec offres------------------------------------*/
                  
 
                  if($data['TypeVente1']=="offres")
@@ -177,11 +179,18 @@
                       echo"<tr>";
                       echo"<td>Faire une Offre pour cette objet : </td>" ;
                      
-                        echo"<td><input type='text' name='nego'>&nbsp;&nbsp; <button class='btn btn-primary'>Envoyer</button></td>";
-                         echo"</tr>" ;
+                     echo "<td><form action='../negociation.php' method='post'>
+                 <input type='number' name='offre_acheteur'> <td>";
+                       echo "<td>
+
+                       <input type='hidden' value='$id_vendeur' name='id_du_vendeur'/>
+
+
+                 <button type='submit' name='Envoyez_btn' class='btn btn-primary' value='".$ID."' >Envoyez l'offre </button> </form><td> 
+                 </tr>" ;
                     }
 
-/*------------------------------------------------Affichage de l'interaction avec Achat Direct------------------------------------*/
+/*------------------------------------------------Affichage de l'interaction avec Achat_Direct------------------------------------*/
 
                   if($data['TypeVente1']=="achat_direct" || $data['TypeVente2']=="achat_direct")
                 {

@@ -85,6 +85,14 @@
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
+
+      <?php if(isset($_SESSION['user_login']) && $_SESSION['user_type']=="Acheteur" ) {
+          ?>
+            <li><a href="comptes/monPanier.php" title="Acceder aux items enregistrés"><img src="http://localhost/Projet_Piscine_Ing3/imgs/supermarket.png"></a></li>
+          <?php
+        } 
+        ?>
+        
         <?php if(!isset($_SESSION['user_type'])) {
           ?>
             <li><a href="comptesCrea/signUp_Acheteur.php"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>

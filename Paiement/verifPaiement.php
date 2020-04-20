@@ -1,4 +1,4 @@
-<?php
+  <?php
   session_start();
 ?>
 
@@ -12,18 +12,18 @@
   $conn=mysqli_connect('localhost:3308','root','','ece_ebay');
   $id_item = isset($_POST["Valider_btn"])? $_POST["Valider_btn"] : "";
 
-
+  echo $id_item;
   if (!$conn) {
     echo "Erreur de connexion a la bdd";
   }
   else{
           //ON VERIFIE SI L'ARTICLE EXISTE
-        $sql="SELECT Prix FROM achat_direct WHERE ID_Items='".$id_item."' ";
+        $sql="SELECT * FROM achat_direct WHERE ID_Items='".$id_item."' ";
 
         $result=mysqli_query($conn,$sql);
 
         if (mysqli_num_rows($result)==0) {
-          echo "Une erreur ALLLERRRest survenue... Veuillez réessayer plus tard";
+          echo "Une erreur yesssALLLERRRest survenue... Veuillez réessayer plus tard";
         }
         //ON VERIFIIE LES COORDONNEES BANCAIRES
         else{
@@ -86,7 +86,7 @@
                 {
                     echo "Solde débité";
                     //header('Location: paiementAccepte.php');
-                    //ON EFFACE L'ARTICLE ?
+                    //---------------------ON EFFACE L'ARTICLE ?----------------------//
 
                     $sql56= " SELECT * FROM items WHERE ID= '".$id_item."' " ;
 
@@ -106,20 +106,33 @@
                       if (!$result6) {
                         echo "erreur dans la suppression de l'article dans la table achat_direct <br>";
                       }
-                      else{
-                        $sql7="DELETE FROM items WHERE ID='".$id_item."' ";
-                        $result7=mysqli_query($conn,$sql7);
 
-                        if (!$result7) {
-                          echo "erreur dans la suppression de l'article dans la table items <br>";
-                        }
-                        else{
-                          echo "article successfully enlevé";
-                          header('Location: paiementAccepte.php');
-                        }
+                      else{
+
+                        $sql30="DELETE FROM panier WHERE ID_items='".$id_item."' ";
+                          $result30=mysqli_query($conn,$sql30);
+                          echo $id_item;
+                          echo "<br>On supprime dans panier<br>";
+                          echo"c'est parti";
+                          if (!$result30) {
+                            echo "erreur dans la suppression de l'article dans le panier <br>";
+                          }
+                          else{
+                          echo "<br>On a bien supprime  dans panier<br>";
+
+                            $sql7="DELETE FROM items WHERE ID='".$id_item."' ";
+                            $result7=mysqli_query($conn,$sql7);
+
+                            if (!$result7) {
+                              echo "erreur dans la suppression de l'article dans la table items <br>";
+                            }
+                            else{
+                              echo "article successfully enlevé";
+                              header('Location: paiementAccepte.php');
+                            }
                       }
                     }
-
+                    }
                   elseif ($type_achat=="encheres") {
                     $sql56= " SELECT * FROM encheres WHERE ID_items= '".$id_item."' " ;
 
@@ -159,18 +172,29 @@
                         if (!$result28) {
                           echo "erreur dans la suppression de l'article dans la table achat_direct <br>";
                         }
-                        else{
-                          $sql10="DELETE FROM items WHERE ID='".$id_item."' ";
-                          $result10=mysqli_query($conn,$sql10);
-                          echo $id_item;
-                          echo "<br>encore moi<br>";
 
-                          if ($result10) {
-                            header('Location: paiementAccepte.php');
+                        $sql30="DELETE FROM panier WHERE ID_items='".$id_item."' ";
+                          $result30=mysqli_query($conn,$sql30);
+                          echo $id_item;
+                          echo "<br>On supprime dans panier<br>";
+
+                          if (!$result30) {
+                            echo "erreur dans la suppression de l'article dans le panier <br>";
                           }
-                          if (!$result10) {
-                            echo "erreur dans la suppression de l'article dans la table items <br>";
-                          }
+                          else{
+
+                      
+                              $sql10="DELETE FROM items WHERE ID='".$id_item."' ";
+                              $result10=mysqli_query($conn,$sql10);
+                              echo $id_item;
+                              echo "<br>encore moi<br>";
+
+                              if ($result10) {
+                                header('Location: paiementAccepte.php');
+                              }
+                              if (!$result10) {
+                                echo "erreur dans la suppression de l'article dans la table items <br>";
+                              }
                         }
                       }
                     } 
@@ -183,6 +207,28 @@
                       echo "erreur dans la suppression de l'article dans la table offres <br>";
                     }
                     else{
+
+                      $sql30="DELETE FROM panier WHERE ID_items='".$id_item."' ";
+                          $result30=mysqli_query($conn,$sql30);
+                          echo $id_item;
+                          echo "<br>On supprime dans panier<br>";
+
+                          if (!$result30) {
+                            echo "erreur dans la suppression de l'article dans le panier <br>";
+                          }
+                          else{
+
+                            $sql30="DELETE FROM achat_direct WHERE ID_Items='".$id_item."' ";
+                          $result30=mysqli_query($conn,$sql30);
+                          echo $id_item;
+                          echo "<br>On supprime dans achat_direct<br>";
+
+                          if (!$result30) {
+                            echo "erreur dans la suppression de l'article dans lachat direct <br>";
+                          }
+                          else{
+
+                            echo "helooooooooooo";
                         $sql12="DELETE FROM items WHERE ID='".$id_item."' ";
                         $result12=mysqli_query($conn,$sql12);
 
@@ -201,6 +247,6 @@
           }
         }
         }
-        
-      
+        }
+      }
 ?>
