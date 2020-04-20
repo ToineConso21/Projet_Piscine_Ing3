@@ -85,22 +85,33 @@
                 else
                 {
                     echo "Solde débité";
-                    header('Location: paiementAccepte.php');
+                    //header('Location: paiementAccepte.php');
                     //ON EFFACE L'ARTICLE ?
-/*
-                    $sql56="SELECT * FROM achat_direct WHERE ID_Items='".$id_item."' ";
+
+                    $sql56= " SELECT * FROM items WHERE ID= '".$id_item."' " ;
 
                     $result56=mysqli_query($conn, $sql56);
 
-                    $data = mysqli_fetch_assoc($result56);
+                    $data2 = mysqli_fetch_assoc($result56);
 
-                    $type_achat = $data['Prix'];
+                    $type_achat = $data2['TypeVente1'];
 
                     echo $type_achat;
 
 
+                    $sql56= " SELECT * FROM encheres WHERE ID_items= '".$id_item."' " ;
 
-                    if ($type_achat=="Achat_im") {
+                    $result56=mysqli_query($conn, $sql56);
+
+                    $data2 = mysqli_fetch_assoc($result56);
+
+                    $id_enchere = $data2['ID'];
+
+                    echo $id_enchere;
+
+
+
+                    if ($type_achat=="VenteDirect") {
                       $sql6="DELETE FROM achat_direct WHERE ID_Items='".$id_item."' ";
                       $result6=mysqli_query($conn,$sql6);
 
@@ -122,25 +133,32 @@
                     }
 
                   elseif ($type_achat=="Enchere") {
-                    $sql8="DELETE FROM encheres WHERE ID_items='".$id_item."' ";
-                    $result8=mysqli_query($conn,$sql8);
-
-                    if (!$result8) {
-                      echo "erreur dans la suppression de l'article dans la table encheres <br>";
-                    }
-                    else{
-                      $sql9="DELETE FROM bid WHERE ID_items='".$id_item."' ";
+                      $sql9="DELETE FROM bid WHERE ID_encheres='".$id_enchere."' ";
                       $result9=mysqli_query($conn,$sql9);
-
+                      echo $id_enchere;
                       if (!$result9) {
-                        echo "erreur dans la suppression de l'article dans la table items <br>";
+
+                        echo "erreur dans la suppression de l'article dans la table bid <br>";
+                      }
+
+                    else{
+                      $sql8="DELETE FROM encheres WHERE ID_items='".$id_item."' ";
+                      $result8=mysqli_query($conn,$sql8);
+                      echo $id_item;
+
+                      if (!$result8) {
+                        echo "erreur dans la suppression de l'article dans la table encheres <br>";
                       }
                       else{
                         $sql10="DELETE FROM items WHERE ID='".$id_item."' ";
                         $result10=mysqli_query($conn,$sql10);
-
+                        echo $id_item;
+                        
                         if ($result10) {
                           header('Location: paiementAccepte.php');
+                        }
+                        if (!$result10) {
+                          echo "erreur dans la suppression de l'article dans la table items <br>";
                         }
                       }
                     }
@@ -162,7 +180,7 @@
                           header('Location: paiementAccepte.php');
                         }
                       }
-                    }*/
+                    }
                 }
                   
                 
